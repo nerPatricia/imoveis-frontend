@@ -1,0 +1,14 @@
+<nav class="main-header navbar navbar-expand navbar-white">
+  <ul class="navbar-nav">
+    <img src="../../../assets/logo.png">
+  </ul>
+
+  <ul class="navbar-nav ml-auto" *ngIf="!logado">
+    <button mat-raised-button color="primary" (click)="login()">Entrar</button>
+    <button mat-raised-button color="accent" style="margin: 0 5em;" (click)="register()">Cadastrar-se</button>
+  </ul>
+
+  <ul class="navbar-nav ml-auto" *ngIf="logado">
+    <button mat-raised-button color="primary" (click)="logout()">Sair</button>
+  </ul>
+</nav>

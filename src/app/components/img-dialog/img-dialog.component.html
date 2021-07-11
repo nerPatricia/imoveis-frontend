@@ -1,0 +1,10 @@
+<h1 mat-dialog-title class="titulo-modal">
+  DETALHES DA IMAGEM
+  <i (click)="closeModal()" class="material-icons btn-fechar">close</i>
+  <span id="fechar" (click)="closeModal()">FECHAR</span>
+</h1>
+<div mat-dialog-content class="dialog-picture">
+  <div>
+    <img [src]="data.src" alt="image at full size">
+  </div>
+</div>

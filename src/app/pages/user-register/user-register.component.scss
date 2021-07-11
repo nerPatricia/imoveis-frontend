@@ -1,0 +1,78 @@
+.main-selection {
+  background-image: url('../../../assets/consoles.jpg');
+  height: 100%;
+  max-width: 100%;
+
+  /* Add the blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.body {
+  background-color: white;
+  /* Fallback color */
+  // background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/opacity/see-through */
+  color: grey;
+  font-weight: bold;
+  border: 3px solid #f1f1f1;
+  border-radius: 5px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 40%;
+  padding: 0 12px;
+}
+
+.box {
+  border: 1px solid #b4b3b3;
+  border-radius: 5px;
+  background-color: #e6e6e6;
+  color: black;
+  font-size: 0.8em;
+  font-weight: 400;
+  text-align: center;
+  padding: 1.8em 1em;
+  margin: 2em;
+  cursor: pointer;
+
+  .title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: black;
+  }
+
+  i,
+  fa-icon {
+    font-size: -webkit-xxx-large;
+    margin: 18px 0;
+  }
+}
+
+.col-12 {
+  text-align: center;
+}
+
+.title {
+  font-size: 2em;
+  color: grey;
+  font-weight: 500;
+  ;
+}
+
+.details {
+  font-size: 1em;
+  color: grey;
+  font-weight: 400;
+  ;
+}

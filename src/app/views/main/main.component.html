@@ -1,0 +1,11 @@
+<div>
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav mode="side" [opened]="sidebarMenuOpened" class="sidenav elevation-4" [fixedInViewport]="true">
+      <app-sidebar></app-sidebar>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="content-wrapper">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

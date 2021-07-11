@@ -1,0 +1,81 @@
+<h1 mat-dialog-title class="titulo-modal">
+  EDITAR IMÓVEL
+  <i (click)="closeModal()" class="material-icons btn-fechar">close</i>
+  <span id="fechar" (click)="closeModal()">FECHAR</span>
+</h1>
+<div mat-dialog-content class="dialog-body" [formGroup]="form">
+  <div class="row" style="padding: 1em 2.3em;">
+    <div class="col-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Código</mat-label>
+        <input matInput type="text" required />
+      </mat-form-field>
+    </div>
+    <div class="col-6">
+      <mat-form-field appearance="fill">
+        <mat-label>Tipo</mat-label>
+        <mat-select disableRipple required>
+          <mat-option value="casa">Casa</mat-option>
+          <mat-option value="apartamento">Apartamento</mat-option>
+          <mat-option value="salaComercial">Sala comercial</mat-option>
+          <mat-option value="lote">Lote</mat-option>
+          <mat-option value="chacara">Chácara</mat-option>
+          <mat-option value="sitio">Sitio</mat-option>
+          <mat-option value="fazenda">Fazenda</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Proprietário</mat-label>
+        <input matInput type="text" required />
+      </mat-form-field>
+    </div>
+    <div class="col-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Descrição</mat-label>
+        <textarea matInput type="text" required></textarea>
+      </mat-form-field>
+    </div>
+    <div class="col-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Preço Solicitado</mat-label>
+        <input matInput type="text" required />
+      </mat-form-field>
+    </div>
+    <div class="col-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Data de Cadastro</mat-label>
+        <input matInput type="text" required />
+      </mat-form-field>
+    </div>
+
+    <div class="col-12 inputimg">
+      <div class="fileinput fileinput-new text-center" data-provides="fileinput" text-center>
+        <div class="fileinput-new thumbnail">
+          <img *ngIf="img" [src]="img" alt="..." />
+        </div>
+        <div class="fileinput-preview fileinput-exists thumbnail"></div>
+        <div>
+          <span class="btn btn-primary btn-file">
+            <span class="fileinput-new">Fazer upload da imagem</span>
+            <span class="fileinput-exists">Trocar</span>
+            <input type="file" name="..." formControlName="imagemPath" (change)="onSelectFile($event)" />
+          </span>
+          <a href="#" class="btn btn-danger fileinput-exists" (click)="imgNull()" data-dismiss="fileinput"><i
+              class="fa fa-times"></i> Remover</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions class="footer-modal">
+  <div class="row row-buttons">
+    <div class="col-4">
+      <button mat-raised-button color="accent" (click)="closeModal()">Cancelar</button>
+    </div>
+    <div class="col-4">
+      <button mat-raised-button color="primary" (click)="atualizar()">Atualizar</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,191 @@
+.dialog-body {
+  display: block;
+  //max-width: 100%;
+  height: auto;
+}
+
+.col-12>mat-form-field,
+.col-6>mat-form-field {
+  width: 100% !important;
+}
+
+.titulo-modal {
+  #fechar {
+    color: #343a40 !important;
+    float: right;
+    font-size: 0.4em;
+    margin-right: 6px;
+    padding-top: 2px;
+    cursor: pointer;
+  }
+}
+
+.inputimg {
+  padding-top: 4px;
+  text-align: center;
+}
+
+.btn-fechar {
+  float: right;
+  padding: 5px;
+  line-height: 22px;
+  min-width: auto;
+  background: none;
+  border: solid 2px #343a40;
+  border-radius: 50%;
+  color: #343a40;
+  cursor: pointer;
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+  vertical-align: middle;
+  background-color: #4FA9A9 !important;
+}
+
+.btn-file>input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-size: 23px;
+  cursor: pointer;
+  filter: alpha(opacity=0);
+  opacity: 0;
+
+  direction: ltr;
+}
+
+.row-buttons {
+  width: 100%;
+  justify-content: space-around;
+  padding-bottom: 40px;
+
+  .col-4>button {
+    width: 100%;
+  }
+}
+
+.footer-modal {
+  padding: 0 10px;
+  border-radius: 5px;
+}
+
+.fileinput {
+  display: inline-block;
+  margin-bottom: 9px;
+}
+
+.fileinput .form-control {
+  display: inline-block;
+  padding-top: 7px;
+  padding-bottom: 5px;
+  margin-bottom: 0;
+  vertical-align: middle;
+  cursor: text;
+}
+
+.fileinput .thumbnail {
+  display: inline-block;
+  margin-bottom: 10px;
+  overflow: hidden;
+  text-align: center;
+  vertical-align: middle;
+  max-width: 200px;
+
+  &.img-circle {
+    border-radius: 50%;
+    max-width: 100px;
+  }
+}
+
+.fileinput .thumbnail>img {
+  max-height: 100%;
+  width: 100%;
+}
+
+.fileinput .btn {
+  vertical-align: middle;
+}
+
+.fileinput-exists .fileinput-new,
+.fileinput-new .fileinput-exists {
+  display: none;
+}
+
+.fileinput-inline .fileinput-controls {
+  display: inline;
+}
+
+.fileinput-filename {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.form-control.fileinput-filename {
+  vertical-align: bottom;
+}
+
+.fileinput.input-group {
+  display: table;
+}
+
+.fileinput.input-group>* {
+  position: relative;
+  z-index: 2;
+}
+
+.fileinput.input-group>.btn-file {
+  z-index: 1;
+}
+
+.fileinput-new.input-group .btn-file,
+.fileinput-new .input-group .btn-file {
+  border-radius: 0 4px 4px 0;
+}
+
+.fileinput-new.input-group .btn-file.btn-xs,
+.fileinput-new .input-group .btn-file.btn-xs,
+.fileinput-new.input-group .btn-file.btn-sm,
+.fileinput-new .input-group .btn-file.btn-sm {
+  border-radius: 0 3px 3px 0;
+}
+
+.fileinput-new.input-group .btn-file.btn-lg,
+.fileinput-new .input-group .btn-file.btn-lg {
+  border-radius: 0 6px 6px 0;
+}
+
+.form-group.has-warning .fileinput .fileinput-preview {
+  color: red;
+}
+
+.form-group.has-warning .fileinput .thumbnail {
+  border-color: red;
+}
+
+.form-group.has-error .fileinput .fileinput-preview {
+  color: red;
+}
+
+.form-group.has-error .fileinput .thumbnail {
+  border-color: red;
+}
+
+.form-group.has-success .fileinput .fileinput-preview {
+  color: green;
+}
+
+.form-group.has-success .fileinput .thumbnail {
+  border-color: green;
+}
+
+.thumbnail {
+  border: 0 none;
+  border-radius: 4px;
+  padding: 0;
+}

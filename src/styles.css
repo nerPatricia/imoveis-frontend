@@ -1,0 +1,116 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import './assets/fontawesome-free-5.15.3-web/css/all.min.css';
+
+/* REFERENCIA DO PROJETO */
+:root {
+  --blue: #007bff;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #dc3545;
+  --orange: #fd7e14;
+  --yellow: #ffc107;
+  --green: #28a745;
+  --teal: #20c997;
+  --cyan: #17a2b8;
+  --white: #ffffff;
+  --gray: #6c757d;
+  --gray-dark: #343a40;
+  --primary: #007bff;
+  --secondary: #6c757d;
+  --success: #28a745;
+  --info: #17a2b8;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --light: #020202;
+  --dark: #343a40;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --font-family-sans-serif: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: sans-serif;
+}
+
+.main-body {
+  margin: 1em 2em;
+}
+
+.mt-2,
+.my-2 {
+  margin-top: 0.5rem !important;
+}
+
+.elevation-0 {
+  box-shadow: none !important;
+}
+
+.elevation-1 {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24) !important;
+}
+
+.elevation-2 {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23) !important;
+}
+
+.elevation-3 {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23) !important;
+}
+
+.elevation-4 {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22) !important;
+}
+
+.elevation-5 {
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22) !important;
+}
+
+.mat-raised-button {
+  width: 150px;
+  height: 40px;
+}
+
+body {
+  margin: 0;
+}
+
+.mat-list-base .mat-list-item,
+.mat-list-base .mat-list-option {
+  width: 97% !important;
+}
+
+.mat-list-base .mat-list-item.mat-2-line,
+.mat-list-base .mat-list-option.mat-2-line {
+  height: 186px !important;
+}
+
+.mat-list-base .mat-list-item .mat-list-text,
+.mat-list-base .mat-list-option .mat-list-text {
+  max-width: 70%;
+  margin-left: 280px;
+}
+
+input.mat-input-element {
+  color: black
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  background-color: white;
+  border-radius: 5px;
+}
+
+/* deixa o modal ocupando uma parte da tela só (muda o estilo apenas do primeiro overlay-pane) */
+.cdk-overlay-container .modal-menor+*>.cdk-overlay-pane {
+  position: relative !important;
+  max-width: calc(100vw - 140px) !important;
+  max-height: calc(100vw - 100px) !important;
+  width: 50% !important;
+}

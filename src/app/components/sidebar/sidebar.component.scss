@@ -1,0 +1,82 @@
+.row {
+  margin: 2em 0 !important;
+  justify-content: center;
+}
+
+.main-sidebar {
+  height: 100vh;
+  overflow: scroll;
+}
+
+.img-circle {
+  border-radius: 50%;
+}
+
+.brand-link .brand-image {
+  float: left;
+  line-height: .8;
+  margin-left: .8rem;
+  margin-right: .5rem;
+  margin-top: -3px;
+  max-height: 103px;
+  width: auto;
+}
+
+.nav-sidebar {
+  position: relative;
+}
+
+.sidebar-form,
+.nav-sidebar>.nav-header {
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+.nav-sidebar .nav-item>.nav-link {
+  position: relative;
+}
+
+.nav-sidebar .nav-item>.nav-link>.float-right {
+  margin-top: -7px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+}
+
+.nav-pills .nav-link {
+  color: #c2c7d0;
+}
+
+.nav-pills .nav-item.dropdown.show .nav-link:hover {
+  color: #ffffff;
+}
+
+.nav-sidebar>.nav-item .nav-icon {
+  margin-left: .05rem;
+  font-size: 1.2rem;
+  margin-right: .2rem;
+  text-align: center;
+  width: 1.6rem;
+}
+
+.nav-flat .nav-item>.nav-link>.nav-icon {
+  margin-left: .55rem;
+}
+
+.nav-sidebar>.nav-item .nav-icon.fa,
+.nav-sidebar>.nav-item .nav-icon.fas,
+.nav-sidebar>.nav-item .nav-icon.far,
+.nav-sidebar>.nav-item .nav-icon.fab {
+  font-size: 1.1rem;
+}
+
+.nav-link:hover {
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-top-color: transparent;
+  color: #ffffff !important;
+}
+
+.nav-link.active {
+  background-color: #343a40 !important;
+}

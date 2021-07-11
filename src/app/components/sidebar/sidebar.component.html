@@ -1,0 +1,54 @@
+<!-- Brand Logo -->
+<div class="row">
+  <div class="col-8">
+    <a [routerLink]="['/']" class="brand-link">
+      <img src="assets/house-logo.png" alt="Sistema de Imoveis" class="brand-image img-circle elevation-1"
+        style="opacity: 0.8;" />
+    </a>
+  </div>
+</div>
+
+<nav class="mt-2">
+  <ul class="nav nav-pills nav-sidebar flex-column">
+    <li class="nav-item">
+      <a [routerLink]="['/']" class="nav-link">
+        <p>
+          <i class="nav-icon fas fa-columns"></i>
+          Dashboard
+        </p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a [routerLink]="['/imoveis']" class="nav-link">
+        <p>
+          <i class="nav-icon fas fa-warehouse"></i>
+          Imoveis
+        </p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a [routerLink]="['/corretores']" class="nav-link">
+        <p>
+          <i class="nav-icon fas fa-user-tie"></i>
+          Corretores
+        </p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a [routerLink]="['/vendas']" class="nav-link">
+        <p>
+          <i class="nav-icon fas fa-chart-line"></i>
+          Vendas
+        </p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a [routerLink]="['/pagamentos']" class="nav-link">
+        <p>
+          <i class="nav-icon fas fa-coins"></i>
+          Salários e Comissões
+        </p>
+      </a>
+    </li>
+  </ul>
+</nav>
