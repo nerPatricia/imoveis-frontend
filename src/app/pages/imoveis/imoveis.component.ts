@@ -102,11 +102,14 @@ export class ImoveisComponent implements OnInit {
 
   novoImovel() {
     // TODO: abrir modal de cadastrar novo imovel
+    // vai utilizar o MESMO modal de EDITAR
+    // passar um form como INPUT
   }
 
   removerSelecionados() {
     // TODO: perguntar se deseja mesmo remover
     // TODO: varrer os selecionados e remover todos
+    // TODO: acessar a url de remover do backend
   }
 
   ngOnInit() {}
