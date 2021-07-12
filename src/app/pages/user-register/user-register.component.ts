@@ -6,7 +6,7 @@ import swal from 'sweetalert2';
 @Component({
   selector: 'app-user-register',
   templateUrl: './user-register.component.html',
-  styleUrls: ['./user-register.component.scss'],
+  styleUrls: ['./user-register.component.less'],
 })
 export class UserRegisterComponent implements OnInit {
   form: FormGroup;

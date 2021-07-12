@@ -10,7 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-imoveis',
   templateUrl: './imoveis.component.html',
-  styleUrls: ['./imoveis.component.scss'],
+  styleUrls: ['./imoveis.component.less'],
 })
 export class ImoveisComponent implements OnInit {
   form: FormGroup;
