@@ -16,6 +16,13 @@ export class EditarCorretorDialogComponent implements OnInit {
     private fb: FormBuilder,
   ) { 
     console.log(data);
+    this.form = this.fb.group({
+      creci: new FormControl(data.corretor?.creci || '', [Validators.required]),
+      nomeCorretor: new FormControl(data.corretor?.nomeCorretor || '', [Validators.required]),
+      salario: new FormControl(data.corretor?.salario || '', [Validators.required]),
+      dataAdmissao: new FormControl(data.corretor?.dataAdmissao || '', [Validators.required]),
+      percentComissao: new FormControl(data.corretor?.percentComissao || '', [Validators.required])
+    });
   }
 
   ngOnInit(): void {

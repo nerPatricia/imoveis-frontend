@@ -64,8 +64,6 @@ export class EditarImovelDialogComponent {
   }
 
   onSelectFile(event) {
-    //TODO: testar essa função pra ver se ta pegando a img certo
-
     // toda vez que a imagem alterar vai chamar a função
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
