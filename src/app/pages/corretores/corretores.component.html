@@ -1,0 +1,71 @@
+<div class="main-body elevation-1">
+    <div class="col-2">
+        <button mat-raised-button class="btn" (click)="corretorModal()">
+          <i class="fa fa-plus"></i>&nbsp;Novo
+        </button>
+    </div>
+    <mat-tab-group dynamicHeight>
+        <mat-tab label="Funcionários Contratados"> 
+                <mat-table [dataSource]="corretores_ct">
+                    <!-- CRECI Definition -->
+                    <ng-container matColumnDef="creci">
+                    <mat-header-cell *matHeaderCellDef> N° CRECI </mat-header-cell>
+                    <mat-cell *matCellDef="let corretor"> {{corretor.creci}} </mat-cell>
+                    </ng-container>
+                
+                    <!-- Nome Definition -->
+                    <ng-container matColumnDef="nome">
+                    <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+                    <mat-cell *matCellDef="let corretor"> {{corretor.nome}} </mat-cell>
+                    </ng-container>
+
+                    <!-- Salário Definition -->
+                    <ng-container matColumnDef="salario">
+                        <mat-header-cell *matHeaderCellDef> Salário </mat-header-cell>
+                        <mat-cell *matCellDef="let corretor"> {{corretor.salario}} </mat-cell>
+                    </ng-container>
+
+                    <!-- Comissão Definition -->
+                    <ng-container matColumnDef="comissao">
+                        <mat-header-cell *matHeaderCellDef> Comissão (%) </mat-header-cell>
+                        <mat-cell *matCellDef="let corretor"> {{corretor.salario}} </mat-cell>
+                        </ng-container>
+
+                    <!-- Nome Definition -->
+                    <ng-container matColumnDef="data_admissao">
+                        <mat-header-cell *matHeaderCellDef> Data de admissão </mat-header-cell>
+                        <mat-cell *matCellDef="let corretor"> {{corretor.data_admissao}} </mat-cell>
+                    </ng-container>
+        
+                    <!-- Header and Row Declarations -->
+                    <mat-header-row *matHeaderRowDef="['creci', 'nome', 'salario', 'comissao', 'data_admissao']"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: ['creci', 'nome', 'salario', 'comissao', 'data_admissao']"></mat-row>
+                </mat-table>
+        </mat-tab>
+        <mat-tab label="Funcionários Comissionados"> 
+            <mat-table [dataSource]="corretores_cm">
+                <!-- CRECI Definition -->
+                <ng-container matColumnDef="creci">
+                <mat-header-cell *matHeaderCellDef> N° CRECI </mat-header-cell>
+                <mat-cell *matCellDef="let corretor"> {{corretor.creci}} </mat-cell>
+                </ng-container>
+            
+                <!-- Nome Definition -->
+                <ng-container matColumnDef="nome">
+                <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+                <mat-cell *matCellDef="let corretor"> {{corretor.nome}} </mat-cell>
+                </ng-container>
+
+                <!-- Comissão Definition -->
+                <ng-container matColumnDef="comissao">
+                    <mat-header-cell *matHeaderCellDef> Percentual de Comissão (%) </mat-header-cell>
+                    <mat-cell *matCellDef="let corretor"> {{corretor.percent_comissao}} </mat-cell>
+                    </ng-container>
+    
+                <!-- Header and Row Declarations -->
+                <mat-header-row *matHeaderRowDef="['creci', 'nome', 'comissao']"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: ['creci', 'nome', 'comissao']"></mat-row>
+            </mat-table>   
+        </mat-tab>
+    </mat-tab-group>
+</div>
