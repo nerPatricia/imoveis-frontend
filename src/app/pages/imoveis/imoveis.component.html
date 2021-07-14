@@ -16,7 +16,7 @@
       </mat-form-field>
     </div>
     <div class="col-2">
-      <button mat-raised-button class="btn" (click)="novoImovel()">
+      <button mat-raised-button class="btn" (click)="imovelModal()">
         <i class="fa fa-plus"></i>&nbsp;Novo
       </button>
     </div>
@@ -29,7 +29,7 @@
   <mat-list [formGroup]="form" *ngIf="imoveis.length > 0">
     <mat-list-item class="box" *ngFor="let imovel of imoveis; let i = index" formArrayName="selecionados">
       <div class="options" mat-colunm>
-        <i class="fas fa-edit" (click)="alterarImovel(imovel)"></i>
+        <i class="fas fa-edit" (click)="imovelModal(imovel)"></i>
         <br>
         <i class="fas fa-trash-alt" (click)="deletarImovel(imovel)"></i>
       </div>
@@ -43,7 +43,7 @@
       </div>
       <div mat-line>
         <p class="title">{{ imovel.tipo.toUpperCase() }}</p>
-        <p>R$ {{ imovel.preco }}</p>
+        <p>R$ {{ imovel.precoSolicitado }}</p>
       </div>
       <div mat-line style="white-space: pre-wrap;">
         <p>{{ imovel.descricao }}</p>

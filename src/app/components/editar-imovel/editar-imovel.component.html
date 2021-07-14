@@ -8,45 +8,51 @@
     <div class="col-6">
       <mat-form-field appearance="outline">
         <mat-label>Código</mat-label>
-        <input matInput type="text" required />
+        <input matInput type="text" formControlName="codigo" required />
+        <mat-error>{{ getErrorMessage("codigo") }}</mat-error>
       </mat-form-field>
     </div>
     <div class="col-6">
       <mat-form-field appearance="fill">
         <mat-label>Tipo</mat-label>
-        <mat-select disableRipple required>
-          <mat-option value="casa">Casa</mat-option>
-          <mat-option value="apartamento">Apartamento</mat-option>
-          <mat-option value="salaComercial">Sala comercial</mat-option>
-          <mat-option value="lote">Lote</mat-option>
-          <mat-option value="chacara">Chácara</mat-option>
-          <mat-option value="sitio">Sitio</mat-option>
-          <mat-option value="fazenda">Fazenda</mat-option>
+        <mat-select disableRipple formControlName="tipo" required>
+          <mat-option value="Casa">Casa</mat-option>
+          <mat-option value="Apartamento">Apartamento</mat-option>
+          <mat-option value="Sala Comercial">Sala comercial</mat-option>
+          <mat-option value="Lote">Lote</mat-option>
+          <mat-option value="Chacara">Chácara</mat-option>
+          <mat-option value="Sitio">Sitio</mat-option>
+          <mat-option value="Fazenda">Fazenda</mat-option>
         </mat-select>
+        <mat-error>{{ getErrorMessage("tipo") }}</mat-error>
       </mat-form-field>
     </div>
     <div class="col-6">
       <mat-form-field appearance="outline">
         <mat-label>Proprietário</mat-label>
-        <input matInput type="text" required />
+        <input matInput type="text" formControlName="proprietarioDoImovel" required />
+        <mat-error>{{ getErrorMessage("proprietarioDoImovel") }}</mat-error>
       </mat-form-field>
     </div>
     <div class="col-6">
       <mat-form-field appearance="outline">
         <mat-label>Descrição</mat-label>
-        <textarea matInput type="text" required></textarea>
+        <textarea matInput type="text" formControlName="descricao" required></textarea>
+        <mat-error>{{ getErrorMessage("descricao") }}</mat-error>
       </mat-form-field>
     </div>
     <div class="col-6">
       <mat-form-field appearance="outline">
         <mat-label>Preço Solicitado</mat-label>
-        <input matInput type="text" required />
+        <input matInput type="text" formControlName="precoSolicitado" required />
+        <mat-error>{{ getErrorMessage("precoSolicitado") }}</mat-error>
       </mat-form-field>
     </div>
     <div class="col-6">
       <mat-form-field appearance="outline">
         <mat-label>Data de Cadastro</mat-label>
-        <input matInput type="text" required />
+        <input matInput type="text" formControlName="dataDeCadastro" required />
+        <mat-error>{{ getErrorMessage("dataDeCadastro") }}</mat-error>
       </mat-form-field>
     </div>
 
@@ -75,7 +81,8 @@
       <button mat-raised-button color="accent" (click)="closeModal()">Cancelar</button>
     </div>
     <div class="col-4">
-      <button mat-raised-button color="primary" (click)="atualizar()">Atualizar</button>
+      <button mat-raised-button color="primary"
+        (click)="atualizar()">{{ data.imovel ? 'Atualizar' : 'Cadastrar' }}</button>
     </div>
   </div>
 </div>

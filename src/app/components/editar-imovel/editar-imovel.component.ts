@@ -1,7 +1,8 @@
 import Swal from 'sweetalert2';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ImoveisEndpointService } from 'src/app/service/imoveis-endpoint.service';
 
 @Component({
   selector: 'app-editar-imovel-component',
@@ -15,21 +16,30 @@ export class EditarImovelDialogComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<EditarImovelDialogComponent>,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private imoveisService: ImoveisEndpointService
   ) {
-    //TODO: iniciar o form reativo no html
-    //TODO: pegar os dados que ta vindo no parametro e adicionar nesse form
     //TODO: adicionar mascara de preço e de data
+    //TODO: preço é number e dataDeCadastro é date
+    console.log(data);
     this.form = this.fb.group({
-      codigo: new FormControl(''),
-      tipo: new FormControl(''),
-      imagemPath: new FormControl(''),
-      imagem: new FormControl(''),
-      descricao: new FormControl(''),
-      proprietario: new FormControl(''),
-      preco: new FormControl(''),
-      dataCadastro: new FormControl('')
+      codigo: new FormControl(data.imovel?.codigo || '', [Validators.required]),
+      tipo: new FormControl(data.imovel?.tipo || '', [Validators.required]),
+      imagemPath: new FormControl(data.imovel?.imagem || '', [Validators.required]),
+      imagem: new FormControl(data.imovel?.imagem || '', [Validators.required]),
+      descricao: new FormControl(data.imovel?.descricao || '', [Validators.required]),
+      proprietarioDoImovel: new FormControl(data.imovel?.proprietarioDoImovel || '', [Validators.required]),
+      precoSolicitado: new FormControl(data.imovel?.precoSolicitado || '', [Validators.required]),
+      dataDeCadastro: new FormControl(data.imovel?.dataDeCadastro || '', [Validators.required])
     });
+  }
+
+  getErrorMessage(field) {
+    if (this.form.get(field)) {
+      return this.form.get(field).hasError('required')
+        ? 'Campo requerido'
+        : '';
+    }
   }
 
   closeModal(): void {
@@ -37,7 +47,16 @@ export class EditarImovelDialogComponent {
   }
 
   atualizar() {
-    //TODO: chamar a url de atualizar informações do imovel
+    console.log(this.form.value);
+    this.form.removeControl("imagemPath");
+
+    this.imoveisService.addImovel(this.form.value).then(
+      (response) => {
+        console.log(response);
+      }, error => {
+        console.log(error);
+      }
+    );
   }
 
   imgNull() {

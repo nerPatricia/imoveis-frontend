@@ -12,26 +12,31 @@ export class ImoveisEndpointService {
   //TODO: remover esse mock e adicionar funções que acessar o backend;
   urbanos = [
     {
-      cod: '100',
+      codigo: '100',
       tipo: 'Casa',
       descricao: 'Casa na Boa Vista com 4 quartos, cozinha americana e sala conjugada, 2 banheiros e área externa.',
-      proprietario: 'livia g.',
-      preco: '400.000,00',
+      proprietarioDoImovel: 'livia g.',
+      precoSolicitado: '400.000,00',
       imagem: null,
-      dataCadastro: null,
+      dataDeCadastro: null,
     },
     {
-      cod: '101',
+      codigo: '101',
       tipo: 'Apartamento',
       descricao: 'Apartamento na Varginha no Edificio DeVille. Possui 3 quartos, sala, cozinha, área de serviço e vaga na garagem.',
-      proprietario: 'luis h. de souza',
-      preco: '800.000,00',
+      proprietarioDoImovel: 'luis h. de souza',
+      precoSolicitado: '800.000,00',
       imagem: null,
-      dataCadastro: null
+      dataDeCadastro: null
     }
   ];
 
   constructor(private client: HttpClient) {}
+
+  addImovel(imovel) {
+    const url = this.backendUrl + '/imovel/cadastrar';
+    return this.client.post(url, imovel).toPromise();
+  }
 
   getAllImoveisUrbanos() {
     console.log(this.urbanos);

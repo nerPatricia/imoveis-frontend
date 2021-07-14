@@ -72,10 +72,10 @@ export class ImoveisComponent implements OnInit {
     });
   }
 
-  alterarImovel(imovel) {
+  imovelModal(imovel?) {
     this.dialog.open(EditarImovelDialogComponent, {
       data: {
-        imovel: imovel
+        imovel: imovel || null
       },
       width: '700px',
       backdropClass: 'modal-menor'
@@ -98,12 +98,6 @@ export class ImoveisComponent implements OnInit {
         Swal.fire('Removido com sucesso', '', 'success');
       }
     })
-  }
-
-  novoImovel() {
-    // TODO: abrir modal de cadastrar novo imovel
-    // vai utilizar o MESMO modal de EDITAR
-    // passar um form como INPUT
   }
 
   removerSelecionados() {
