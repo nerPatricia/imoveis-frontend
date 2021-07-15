@@ -14,7 +14,7 @@
     <div class="col-6">
       <mat-form-field appearance="outline">
         <mat-label>Nome</mat-label>
-        <input matInput type="text" formControlName="nomeCorretor" required />
+        <input matInput type="text" formControlName="nome" required />
       </mat-form-field>
     </div>
     <div class="col-6">
@@ -43,7 +43,9 @@
       <button mat-raised-button color="accent" (click)="closeModal()">Cancelar</button>
     </div>
     <div class="col-4">
-      <button mat-raised-button color="primary"></button>
+      <button mat-raised-button color="primary"
+        (click)="closeModal()"> Cadastrar
+      </button>
     </div>
   </div>
 </div>

@@ -7,6 +7,18 @@
     <mat-tab-group dynamicHeight>
         <mat-tab label="Funcionários Contratados"> 
                 <mat-table [dataSource]="corretores_ct">
+                    <!-- Actions -->
+                    <ng-container matColumnDef="actions">
+                        <mat-header-cell  *matHeaderCellDef > Actions </mat-header-cell>
+                        <mat-cell *matCellDef="let row" >
+                            <div class="options" mat-colunm>
+                                <i class="fas fa-edit" (click)="corretorModal(row)"></i>
+                                <br>
+                                <i class="fas fa-trash-alt" (click)="deletarCorretor(row)"></i>
+                            </div>
+                        </mat-cell>
+                    </ng-container>
+
                     <!-- CRECI Definition -->
                     <ng-container matColumnDef="creci">
                     <mat-header-cell *matHeaderCellDef> N° CRECI </mat-header-cell>
@@ -28,22 +40,34 @@
                     <!-- Comissão Definition -->
                     <ng-container matColumnDef="comissao">
                         <mat-header-cell *matHeaderCellDef> Comissão (%) </mat-header-cell>
-                        <mat-cell *matCellDef="let corretor"> {{corretor.salario}} </mat-cell>
+                        <mat-cell *matCellDef="let corretor"> {{corretor.percentComissao}} </mat-cell>
                         </ng-container>
 
                     <!-- Nome Definition -->
                     <ng-container matColumnDef="data_admissao">
                         <mat-header-cell *matHeaderCellDef> Data de admissão </mat-header-cell>
-                        <mat-cell *matCellDef="let corretor"> {{corretor.data_admissao}} </mat-cell>
+                        <mat-cell *matCellDef="let corretor"> {{corretor.dataAdmissao}} </mat-cell>
                     </ng-container>
         
                     <!-- Header and Row Declarations -->
-                    <mat-header-row *matHeaderRowDef="['creci', 'nome', 'salario', 'comissao', 'data_admissao']"></mat-header-row>
-                    <mat-row *matRowDef="let row; columns: ['creci', 'nome', 'salario', 'comissao', 'data_admissao']"></mat-row>
+                    <mat-header-row *matHeaderRowDef="['actions', 'creci', 'nome', 'salario', 'comissao', 'data_admissao']"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: ['actions', 'creci', 'nome', 'salario', 'comissao', 'data_admissao']"></mat-row>
                 </mat-table>
         </mat-tab>
         <mat-tab label="Funcionários Comissionados"> 
             <mat-table [dataSource]="corretores_cm">
+                <!-- Actions -->
+                <ng-container matColumnDef="actions">
+                    <mat-header-cell  *matHeaderCellDef > Actions </mat-header-cell>
+                    <mat-cell *matCellDef="let row" >
+                        <div class="options" mat-colunm>
+                            <i class="fas fa-edit" (click)="corretorModal(row)"></i>
+                            <br>
+                            <i class="fas fa-trash-alt" (click)="deletarCorretor(row)"></i>
+                        </div>
+                    </mat-cell>
+                </ng-container>
+
                 <!-- CRECI Definition -->
                 <ng-container matColumnDef="creci">
                 <mat-header-cell *matHeaderCellDef> N° CRECI </mat-header-cell>
@@ -59,12 +83,12 @@
                 <!-- Comissão Definition -->
                 <ng-container matColumnDef="comissao">
                     <mat-header-cell *matHeaderCellDef> Percentual de Comissão (%) </mat-header-cell>
-                    <mat-cell *matCellDef="let corretor"> {{corretor.percent_comissao}} </mat-cell>
+                    <mat-cell *matCellDef="let corretor"> {{corretor.percentComissao}} </mat-cell>
                     </ng-container>
     
                 <!-- Header and Row Declarations -->
-                <mat-header-row *matHeaderRowDef="['creci', 'nome', 'comissao']"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: ['creci', 'nome', 'comissao']"></mat-row>
+                <mat-header-row *matHeaderRowDef="['actions', 'creci', 'nome', 'comissao']"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: ['actions', 'creci', 'nome', 'comissao']"></mat-row>
             </mat-table>   
         </mat-tab>
     </mat-tab-group>

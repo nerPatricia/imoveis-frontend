@@ -3,7 +3,7 @@ export interface Employee {
     creci : number,	
     nome: string,
     salario?: number,
-    data_admissao?: string,
-    percent_comissao?: number //(float entre 1 e 3
+    dataAdmissao?: string,
+    percentComissao?: number //(float entre 1 e 3
 }
   
