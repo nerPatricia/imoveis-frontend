@@ -3,17 +3,18 @@
   <i (click)="closeModal()" class="material-icons btn-fechar">close</i>
   <span id="fechar" (click)="closeModal()">FECHAR</span>
 </h1>
-<div class="col-6">
-  <mat-form-field appearance="fill">
-    <mat-label>Selecione o tipo do imóvel</mat-label>
-    <mat-select disableRipple [(ngModel)]="tipoCorretor" (selectionChange)="getTypesSearch($event)">
-      <mat-option value="contratado">Contratado</mat-option>
-      <mat-option value="comissionado">Comissionado</mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
+
 <div mat-dialog-content class="dialog-body" [formGroup]="form">
   <div class="row" style="padding: 1em 2.3em;">
+    <div class="col-6">
+      <mat-form-field appearance="fill">
+        <mat-label>Selecione o tipo do Corretor</mat-label>
+        <mat-select disableRipple formControlName="tipoCorretor">
+          <mat-option value="Contratado">Contratado</mat-option>
+          <mat-option value="Comissionado">Comissionado</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
     <div class="col-6">
       <mat-form-field appearance="outline">
         <mat-label>CRECI</mat-label>
@@ -26,22 +27,22 @@
         <input matInput type="text" formControlName="nome" required />
       </mat-form-field>
     </div>
-    <div class="col-6">
+    <div class="col-6" *ngIf="form.get('tipoCorretor').value == 'Contratado'">
       <mat-form-field appearance="outline">
         <mat-label>Salário</mat-label>
         <input matInput type="number" formControlName="salario" required />
+      </mat-form-field>
+    </div>
+    <div class="col-6" *ngIf="form.get('tipoCorretor').value == 'Comissionado'">
+      <mat-form-field appearance="outline">
+        <mat-label>Percentual de Comissão</mat-label>
+        <input matInput type="number" formControlName="percentComissao" required />
       </mat-form-field>
     </div>
     <div class="col-6">
       <mat-form-field appearance="outline">
         <mat-label>Data de Admissão</mat-label>
         <input matInput type="text" formControlName="dataAdmissao" required />
-      </mat-form-field>
-    </div>
-    <div class="col-6">
-      <mat-form-field appearance="outline">
-        <mat-label>Percentual de Comissão</mat-label>
-        <input matInput type="number" formControlName="percentComissao" required />
       </mat-form-field>
     </div>
   </div>
@@ -52,8 +53,7 @@
       <button mat-raised-button color="accent" (click)="closeModal()">Cancelar</button>
     </div>
     <div class="col-4">
-      <button mat-raised-button color="primary"
-        (click)="closeModal()"> Cadastrar
+      <button mat-raised-button color="primary" (click)="cadastrar()"> Cadastrar
       </button>
     </div>
   </div>
