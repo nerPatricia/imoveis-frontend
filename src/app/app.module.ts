@@ -20,6 +20,8 @@ import { EditarImovelDialogComponent } from './components/editar-imovel/editar-i
 
 // pages
 import { ImoveisComponent } from './pages/imoveis/imoveis.component';
+import { CorretoresComponent } from './pages/corretores/corretores.component';
+import { EditarCorretorDialogComponent } from './components/editar-corretor/editar-corretor.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { ImoveisComponent } from './pages/imoveis/imoveis.component';
     ImgDialogComponent,
     EditarImovelDialogComponent,
     NavbarComponent,
-    UserRegisterComponent
+    UserRegisterComponent,
+    CorretoresComponent,
+    EditarCorretorDialogComponent
   ],
   imports: [
     BrowserModule,
