@@ -3,6 +3,7 @@ import { MainComponent } from './views/main/main.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CorretoresComponent } from './pages/corretores/corretores.component';
+import { VendasComponent } from './pages/vendas/vendas.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
       {
         path: 'corretores',
         component: CorretoresComponent,
+      },
+      {
+        path: 'vendas',
+        component: VendasComponent,
       }
     ],
   },

@@ -17,11 +17,13 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ImgDialogComponent } from './components/img-dialog/img-dialog.component';
 import { EditarImovelDialogComponent } from './components/editar-imovel/editar-imovel.component';
+import { EditarCorretorDialogComponent } from './components/editar-corretor/editar-corretor.component';
+import { EditarVendaDialogComponent } from 'src/app/components/editar-venda/editar-venda.component';
 
 // pages
 import { ImoveisComponent } from './pages/imoveis/imoveis.component';
 import { CorretoresComponent } from './pages/corretores/corretores.component';
-import { EditarCorretorDialogComponent } from './components/editar-corretor/editar-corretor.component';
+import { VendasComponent } from './pages/vendas/vendas.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { EditarCorretorDialogComponent } from './components/editar-corretor/edit
     NavbarComponent,
     UserRegisterComponent,
     CorretoresComponent,
-    EditarCorretorDialogComponent
+    EditarCorretorDialogComponent,
+    VendasComponent,
+    EditarVendaDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<div class="main-body elevation-1">
+    <!-- Botão de Cadastro -->
+    <div class="col-2">
+        <button mat-raised-button class="btn" (click)="vendaModal()">
+          <i class="fa fa-plus"></i>&nbsp;Novo
+        </button>
+    </div>
+
+    <!-- Tabela de Vendas -->
+    <mat-table [dataSource]="vendas">
+        <!-- :actions -->
+        <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef > Actions </mat-header-cell>
+            <mat-cell *matCellDef="let row" >
+                <div class="options" mat-colunm>
+                    <i class="fas fa-edit" (click)="vendasModal(row)"></i> <br/>
+                    <i class="fas fa-trash-alt" (click)="deletarVendas(row)"></i>
+                </div>
+            </mat-cell>
+        </ng-container>
+
+         <!-- :codigo da venda -->
+         <ng-container matColumnDef="codVenda">
+            <mat-header-cell *matHeaderCellDef> Cod. Venda </mat-header-cell>
+            <mat-cell *matCellDef="let venda"> {{venda.codVenda}} </mat-cell>
+        </ng-container>
+
+         <!-- :codigo do imovel -->
+         <ng-container matColumnDef="codImovel">
+            <mat-header-cell *matHeaderCellDef> Cod. Imovel </mat-header-cell>
+            <mat-cell *matCellDef="let venda"> {{venda.codImovel}} </mat-cell>
+        </ng-container>
+
+        <!-- :valor real -->
+        <ng-container matColumnDef="valorReal">
+            <mat-header-cell *matHeaderCellDef> Valor Real </mat-header-cell>
+            <mat-cell *matCellDef="let venda"> {{venda.valorReal}} </mat-cell>
+        </ng-container>
+
+        <!-- :nome do comprador -->
+        <ng-container matColumnDef="nomeComprador">
+            <mat-header-cell *matHeaderCellDef> Nome Comprador </mat-header-cell>
+            <mat-cell *matCellDef="let venda"> {{venda.nomeComprador}} </mat-cell>
+        </ng-container>
+
+        <!-- :nome do corretor -->
+        <ng-container matColumnDef="nomeCorretor">
+            <mat-header-cell *matHeaderCellDef> Nome Corretor </mat-header-cell>
+            <mat-cell *matCellDef="let venda"> {{venda.nomeCorretor}} </mat-cell>
+        </ng-container>
+
+        <!-- :data da venda -->
+        <ng-container matColumnDef="dataVenda">
+            <mat-header-cell *matHeaderCellDef> Data Venda </mat-header-cell>
+            <mat-cell *matCellDef="let venda"> {{venda.dataVenda}} </mat-cell>
+        </ng-container>
+
+        <!-- Headers & rows declarations-->
+        <mat-header-row *matHeaderRowDef="['actions', 'codVenda', 'codImovel', 'valorReal', 'nomeComprador', 'nomeCorretor', 'dataVenda']"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: ['actions', 'codVenda', 'codImovel', 'valorReal', 'nomeComprador', 'nomeCorretor', 'dataVenda']"></mat-row>
+    </mat-table>
+</div>
