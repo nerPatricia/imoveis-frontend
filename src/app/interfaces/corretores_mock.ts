@@ -1,6 +1,6 @@
-import { Employee } from "./corretores_model";
+import { IEmployee } from "./corretores_model";
 
-export const CORRETORES_CT: Employee[] = [
+export const CORRETORES_CT: IEmployee[] = [
     {
         creci : 101,	
         nome: 'Diego',
@@ -87,7 +87,7 @@ export const CORRETORES_CT: Employee[] = [
     }
 ]
   
-export const CORRETORES_CM: Employee[] = [
+export const CORRETORES_CM: IEmployee[] = [
     {
         creci : 1001,	
         nome: 'Vaas',

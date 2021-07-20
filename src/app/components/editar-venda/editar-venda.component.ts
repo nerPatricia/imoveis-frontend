@@ -18,7 +18,6 @@ export class EditarVendaDialogComponent implements OnInit {
   ) { 
     console.log(data);
 
-    
     this.form = this.fb.group({
         codVenda: new FormControl(data.venda?.codVenda || '', [Validators.required]),
         codImovel: new FormControl(data.venda?.codImovel || '', [Validators.required]),

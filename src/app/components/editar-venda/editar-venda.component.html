@@ -9,16 +9,16 @@
 <!-- formulario venda -->
 <div mat-dialog-content class="dialog-body" [formGroup]="form">
     <div class="row" style="padding: 1em 2.3em;">
-        <!-- :codigo da venda [colocar para gerar automaticamente depois]--> 
-        <div class="col-6">
+        <!-- :codigo da venda [colocar para gerar automaticamente depois]-->
+        <div class="col-6" *ngIf="data.venda">
             <mat-form-field appearance="outline">
-            <mat-label>Codigo Venda</mat-label>
-            <input matInput type="text" formControlName="codVenda" required />
-            <mat-error>{{ getErrorMessage("codVenda") }}</mat-error>
+                <mat-label>Codigo Venda</mat-label>
+                <input matInput type="text" formControlName="codVenda" required />
+                <mat-error>{{ getErrorMessage("codVenda") }}</mat-error>
             </mat-form-field>
         </div>
 
-        <!-- :codigo do Imovel --> 
+        <!-- :codigo do Imovel -->
         <div class="col-6">
             <mat-form-field appearance="outline">
                 <mat-label>Codigo Imovel</mat-label>
@@ -27,7 +27,7 @@
             </mat-form-field>
         </div>
 
-        <!-- :valor real --> 
+        <!-- :valor real -->
         <div class="col-6">
             <mat-form-field appearance="outline">
                 <mat-label>Valor Real</mat-label>
@@ -36,7 +36,7 @@
             </mat-form-field>
         </div>
 
-        <!-- :nome comprador --> 
+        <!-- :nome comprador -->
         <div class="col-6">
             <mat-form-field appearance="outline">
                 <mat-label>Nome Comprador</mat-label>
@@ -45,7 +45,7 @@
             </mat-form-field>
         </div>
 
-        <!-- :nome corretor --> 
+        <!-- :nome corretor -->
         <div class="col-6">
             <mat-form-field appearance="outline">
                 <mat-label>Nome Corretor</mat-label>
@@ -54,7 +54,7 @@
             </mat-form-field>
         </div>
 
-        <!-- :data da venda --> 
+        <!-- :data da venda -->
         <div class="col-6">
             <mat-form-field appearance="outline">
                 <mat-label>Data Venda</mat-label>
@@ -68,15 +68,15 @@
 <!-- Footer -->
 <div mat-dialog-actions class="footer-modal">
     <div class="row row-buttons">
-      <!-- Close button -->
-      <div class="col-4">
-        <button mat-raised-button color="accent" (click)="closeModal()">Cancelar</button>
-      </div>
+        <!-- Close button -->
+        <div class="col-4">
+            <button mat-raised-button color="accent" (click)="closeModal()">Cancelar</button>
+        </div>
 
-      <!-- Add button -->
-      <div class="col-4">
-        <button mat-raised-button color="primary"
-          (click)="atualizar()">{{ data.venda ? 'Atualizar' : 'Cadastrar' }}</button>
-      </div>
+        <!-- Add button -->
+        <div class="col-4">
+            <button mat-raised-button color="primary"
+                (click)="cadastrar()">{{ data.venda ? 'Atualizar' : 'Cadastrar' }}</button>
+        </div>
     </div>
 </div>

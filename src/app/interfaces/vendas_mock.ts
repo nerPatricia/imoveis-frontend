@@ -1,6 +1,6 @@
-import { Venda } from "./vendas_model";
+import { IVenda } from "./vendas_model";
 
-export const vendasList: Venda[] = [
+export const vendasList: IVenda[] = [
     {
         codVenda: "100",
         codImovel: "1101",

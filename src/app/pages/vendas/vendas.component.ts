@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { FormBuilder, FormGroup} from '@angular/forms';
 import Swal from 'sweetalert2';
-
-// -- Importações do modelo Vendas --
-import { Venda } from 'src/app/interfaces/vendas_model';
-import { vendasList } from '../../interfaces/vendas_mock'; //APENAS PARA TESTES
+import { IVenda } from 'src/app/interfaces/vendas_model';
+import { vendasList } from '../../interfaces/vendas_mock';
 import { EditarVendaDialogComponent } from 'src/app/components/editar-venda/editar-venda.component';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-vendas',
@@ -14,23 +13,23 @@ import { EditarVendaDialogComponent } from 'src/app/components/editar-venda/edit
   styleUrls: ['./vendas.component.less']
 })
 
-export class VendasComponent implements OnInit {
-  vendas: Venda[] = vendasList; //APENAS PARA TESTES
-  form: FormGroup;
-  totalChecked = 0;
+export class VendasComponent implements OnInit, AfterViewInit{
+  vendas = new MatTableDataSource<IVenda>(vendasList);
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    public dialog: MatDialog
-  ){}
+  constructor(public dialog: MatDialog){}
 
   ngOnInit(): void {
     console.log(this.vendas);
   }
 
+  ngAfterViewInit() {
+    this.vendas.paginator = this.paginator;
+  }
+
   vendaModal(venda?) {
     console.log(venda);
-    this.dialog.open(EditarVendaDialogComponent, { //ALTERAR PARA VENDAS
+    this.dialog.open(EditarVendaDialogComponent, {
       data: {
         venda: venda || null
       },
@@ -39,10 +38,10 @@ export class VendasComponent implements OnInit {
     });
   }
 
-  deletarVendas(corretor) { //ALTERAR PARA VENDAS
+  deletarVendas(venda) { //ALTERAR PARA VENDAS
     Swal.fire({
       icon: 'warning',
-      title: 'Deseja mesmo remover este corretor?',
+      title: 'Deseja mesmo remover esta venda?',
       confirmButtonText: 'Remover',
       showCancelButton: true,
       confirmButtonColor: '#dc3545',
