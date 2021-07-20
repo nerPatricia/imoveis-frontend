@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, AfterViewInit, ViewChildren, QueryList } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { Employee } from 'src/app/interfaces/corretores_model';
+import { IEmployee } from 'src/app/interfaces/corretores_model';
 import { CORRETORES_CM, CORRETORES_CT } from '../../interfaces/corretores_mock';
 import { EditarCorretorDialogComponent } from 'src/app/components/editar-corretor/editar-corretor.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -13,8 +13,8 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['./corretores.component.less']
 })
 export class CorretoresComponent implements OnInit, AfterViewInit {
-  corretores_ct = new MatTableDataSource<Employee>(CORRETORES_CT);  //corretores é do tipo Employee (interface) que será um array que armazena os fake employee
-  corretores_cm = new MatTableDataSource<Employee>(CORRETORES_CM);  //corretores é do tipo Employee (interface) que será um array que armazena os fake employee
+  corretores_ct = new MatTableDataSource<IEmployee>(CORRETORES_CT);  //corretores é do tipo Employee (interface) que será um array que armazena os fake employee
+  corretores_cm = new MatTableDataSource<IEmployee>(CORRETORES_CM);  //corretores é do tipo Employee (interface) que será um array que armazena os fake employee
   corretores = [this.corretores_ct, this.corretores_cm];
   @ViewChildren(MatPaginator) paginator: QueryList<MatPaginator>;
 

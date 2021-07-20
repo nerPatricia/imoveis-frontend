@@ -1,4 +1,4 @@
-export interface Imovel {
+export interface IImovel {
     codigo: string,
     tipo: string,
     descricao: string,
