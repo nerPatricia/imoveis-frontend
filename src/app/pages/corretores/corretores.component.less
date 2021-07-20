@@ -1,25 +1,45 @@
 .main-body {
-    border: 1px transparent #dfdfdf;
-    border-radius: 5px;
-    background-color: #f8f9fa;
-    min-height: 90%;
-  
-    .row {
-      justify-content: center;
-    }
-  
-    .col-6>mat-form-field {
-      width: 100% !important;
-    }
-  
-    .btn {
-      margin-top: 5px;
-      background-color: #4FA9A9;
-      color: #f8f9fa;
-    }
-  
-    .btn-remove {
-      width: 100% !important;
-      background-color: #dc3545;
-    }
+  border: 1px transparent #dfdfdf;
+  border-radius: 5px;
+  background-color: #f8f9fa;
+  min-height: 90%;
+
+  .row {
+    justify-content: flex-end;
+  }
+
+  .col-6>mat-form-field {
+    width: 100% !important;
+  }
+
+  .btn {
+    margin-top: 5px;
+    background-color: #4FA9A9;
+    color: #f8f9fa;
+  }
+
+  .btn-remove {
+    width: 100% !important;
+    background-color: #dc3545;
+  }
+}
+
+.header-color>mat-tab-group {
+  background-color: #fff !important;
+}
+
+.options {
+  display: flex !important;
+
+  i {
+    padding: 10px !important;
+  }
+
+  .fa-trash-alt {
+    color: #dc3545;
+  }
+}
+
+.tab {
+  margin-top: 1.2em;
 }
