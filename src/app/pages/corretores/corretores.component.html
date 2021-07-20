@@ -60,7 +60,7 @@
                         *matRowDef="let row; columns: ['actions', 'creci', 'nome', 'salario', 'comissao', 'data_admissao']">
                     </mat-row>
                 </mat-table>
-                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>
             </mat-tab>
             <mat-tab label="Funcionários Comissionados">
                 <mat-table [dataSource]="corretores_cm">
@@ -98,7 +98,7 @@
                     <mat-header-row *matHeaderRowDef="['actions', 'creci', 'nome', 'comissao']"></mat-header-row>
                     <mat-row *matRowDef="let row; columns: ['actions', 'creci', 'nome', 'comissao']"></mat-row>
                 </mat-table>
-                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>
             </mat-tab>
         </mat-tab-group>
     </div>
