@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!-- Titulo -->
 <h1 mat-dialog-title class="titulo-modal">
-    EDITAR VENDA
+    {{ titulo }}
     <i (click)="closeModal()" class="material-icons btn-fechar">close</i>
     <span id="fechar" (click)="closeModal()">FECHAR</span>
 </h1>
@@ -9,20 +9,11 @@
 <!-- formulario venda -->
 <div mat-dialog-content class="dialog-body" [formGroup]="form">
     <div class="row" style="padding: 1em 2.3em;">
-        <!-- :codigo da venda [colocar para gerar automaticamente depois]-->
-        <div class="col-6" *ngIf="data.venda">
-            <mat-form-field appearance="outline">
-                <mat-label>Codigo Venda</mat-label>
-                <input matInput type="text" formControlName="codVenda" required />
-                <mat-error>{{ getErrorMessage("codVenda") }}</mat-error>
-            </mat-form-field>
-        </div>
-
         <!-- :codigo do Imovel -->
         <div class="col-6">
             <mat-form-field appearance="outline">
                 <mat-label>Codigo Imovel</mat-label>
-                <input matInput type="text" formControlName="codImovel" required />
+                <input matInput type="text" formControlName="codImovel" readonly={{edit}}/>
                 <mat-error>{{ getErrorMessage("codImovel") }}</mat-error>
             </mat-form-field>
         </div>
@@ -31,7 +22,7 @@
         <div class="col-6">
             <mat-form-field appearance="outline">
                 <mat-label>Valor Real</mat-label>
-                <input matInput type="text" formControlName="valorReal" required />
+                <input matInput type="text" formControlName="valorReal" prefix="R$" mask="separator.2"required />
                 <mat-error>{{ getErrorMessage("valorReal") }}</mat-error>
             </mat-form-field>
         </div>
@@ -58,7 +49,7 @@
         <div class="col-6">
             <mat-form-field appearance="outline">
                 <mat-label>Data Venda</mat-label>
-                <input matInput type="text" formControlName="dataVenda" placeholder="dd/mm/yyyy" required />
+                <input matInput type="text" formControlName="dataVenda" placeholder="dd/mm/yyyy" mask="00/00/0000" required />
                 <mat-error>{{ getErrorMessage("dataVenda") }}</mat-error>
             </mat-form-field>
         </div>

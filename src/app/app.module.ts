@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { UserRegisterComponent } from './pages/user-register/user-register.component';
 import '@angular/common/locales/global/pt';
+import { NgxMaskModule } from 'ngx-mask'
 
 // views
 import { MainComponent } from './views/main/main.component';
@@ -49,7 +50,8 @@ import { VendasComponent } from './pages/vendas/vendas.component';
     AppRoutingModule,
     ReactiveFormsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'pt' } ],
   bootstrap: [AppComponent]

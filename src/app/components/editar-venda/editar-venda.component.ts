@@ -8,7 +8,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./editar-venda.component.less']
 })
 export class EditarVendaDialogComponent implements OnInit {
-  datemask = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
+  titulo = "";
+  edit = false;
   form: FormGroup;
 
   constructor(
@@ -19,13 +20,14 @@ export class EditarVendaDialogComponent implements OnInit {
     console.log(data);
 
     this.form = this.fb.group({
-        codVenda: new FormControl(data.venda?.codVenda || '', [Validators.required]),
         codImovel: new FormControl(data.venda?.codImovel || '', [Validators.required]),
         valorReal: new FormControl(data.venda?.valorReal || '', [Validators.required]),
         nomeComprador: new FormControl(data.venda?.nomeComprador || '', [Validators.required]),
         nomeCorretor: new FormControl(data.venda?.nomeCorretor || '', [Validators.required]),
         dataVenda: new FormControl(data.venda?.dataVenda || '', [Validators.required])
     });
+    this.titulo = data.venda  ? "EDITAR VENDA" : "CADASTRAR VENDAS";
+    this.edit = data.venda  ? true : false;
   }
 
   getErrorMessage(field) {
