@@ -6,7 +6,7 @@ export const vendasList: IVenda[] = [
         codImovel: "1101",
         valorReal: 1500.50,
         nomeComprador: "Comprador1",
-        nomeCorretor: "Corretor1",
+        corretor: "101",
         dataVenda: new Date('2019-01-16'),
     },
     {
@@ -14,7 +14,7 @@ export const vendasList: IVenda[] = [
         codImovel: "1102",
         valorReal: 1000,
         nomeComprador: "Comprador1",
-        nomeCorretor: "Corretor2",
+        corretor: "11",
         dataVenda: new Date('2019-01-16'),
     },
     {
@@ -22,7 +22,7 @@ export const vendasList: IVenda[] = [
         codImovel: "1103",
         valorReal: 3000.75,
         nomeComprador: "Comprador2",
-        nomeCorretor: "Corretor1",
+        corretor: "11",
         dataVenda: new Date('2019-01-16'),
     }
 ]

@@ -46,10 +46,10 @@
                 <mat-cell *matCellDef="let venda"> {{venda.nomeComprador}} </mat-cell>
             </ng-container>
 
-            <!-- :nome do corretor -->
+            <!-- :corretor -->
             <ng-container matColumnDef="nomeCorretor">
-                <mat-header-cell *matHeaderCellDef> Nome Corretor </mat-header-cell>
-                <mat-cell *matCellDef="let venda"> {{venda.nomeCorretor}} </mat-cell>
+                <mat-header-cell *matHeaderCellDef> Corretor(CRECI) </mat-header-cell>
+                <mat-cell *matCellDef="let venda"> {{venda.corretor}} </mat-cell>
             </ng-container>
 
             <!-- :data da venda -->

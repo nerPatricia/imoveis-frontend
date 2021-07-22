@@ -23,7 +23,7 @@ export class EditarVendaDialogComponent implements OnInit {
         codImovel: new FormControl(data.venda?.codImovel || '', [Validators.required]),
         valorReal: new FormControl(data.venda?.valorReal || '', [Validators.required]),
         nomeComprador: new FormControl(data.venda?.nomeComprador || '', [Validators.required]),
-        nomeCorretor: new FormControl(data.venda?.nomeCorretor || '', [Validators.required]),
+        corretor: new FormControl(data.venda?.corretor || '', [Validators.required]),
         dataVenda: new FormControl(data.venda?.dataVenda || '', [Validators.required])
     });
     this.titulo = data.venda  ? "EDITAR VENDA" : "CADASTRAR VENDAS";
