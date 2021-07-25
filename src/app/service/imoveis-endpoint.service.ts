@@ -38,18 +38,24 @@ export class ImoveisEndpointService {
     return this.client.post(url, imovel).toPromise();
   }
 
+  updateImovelById(imovel, id) {
+    const url = this.backendUrl + '/imovel/alterar/' + id;
+    return this.client.put(url, imovel).toPromise();
+  }
+
+  addImgImovel(img) {
+    const url = this.backendUrl + '/imagem/salvar';
+    return this.client.post(url, img).toPromise();
+  }
+
+  getAllImoveisByType(types) {
+    const url = this.backendUrl + '/imagem/listar?tipos=' + types;
+    console.log(url);
+    // return this.client.get(url).toPromise();
+  }
+
   getAllImoveisUrbanos() {
     console.log(this.urbanos);
     return this.urbanos;
   }
-
-  // getGameById(consoleType: string, gameId): Observable<any> {
-  //   const url = this.backendUrl + '/' + consoleType + '/game/' + gameId;
-  //   return this.client.get(url);
-  // }
-
-  // registerReview(reviewData): Observable<any> {
-  //   const url = this.backendUrl + '/review';
-  //   return this.client.post(url, reviewData);
-  // }
 }
