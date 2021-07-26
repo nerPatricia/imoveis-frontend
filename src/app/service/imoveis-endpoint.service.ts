@@ -1,7 +1,6 @@
 import { environment } from '../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -43,15 +42,10 @@ export class ImoveisEndpointService {
     return this.client.put(url, imovel).toPromise();
   }
 
-  addImgImovel(img) {
-    const url = this.backendUrl + '/imagem/salvar';
-    return this.client.post(url, img).toPromise();
-  }
-
-  getAllImoveisByType(types) {
-    const url = this.backendUrl + '/imagem/listar?tipos=' + types;
-    console.log(url);
-    // return this.client.get(url).toPromise();
+  getAllImoveisByType(type) {
+    const url = this.backendUrl + '/imovel/listar?tipos=' + 
+      (type != 'todos' ? '["' + type + '"]' : '["Casa","Fazenda","Apartamento","Sala Comercial","Lote","Chacara","Sitio"]');
+    return this.client.get(url).toPromise();
   }
 
   getAllImoveisUrbanos() {

@@ -65,14 +65,20 @@ export class EditarImovelDialogComponent {
   atualizar() {
     console.log(this.form.value);
     this.form.removeControl("imagemPath");
+    this.form.get('imagem').setValue(this.img);
 
-    this.fileService.saveImage(this.img);
-
-    this.imoveisService.addImovel(this.form.value).then(
+    this.fileService.saveImage(this.img).then(
       (response) => {
         console.log(response);
-      },
-      (error) => {
+        this.imoveisService.addImovel(this.form.value).then(
+          (response) => {
+            console.log(response);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      }, error => {
         console.log(error);
       }
     );
@@ -91,18 +97,8 @@ export class EditarImovelDialogComponent {
       // só aceita imagens png
       if (file.type.includes("png")) {
         const reader = new FileReader();
-
-        reader.readAsDataURL(event.target.files[0]); // read file as data url
-
+        reader.readAsDataURL(event.target.files[0]);
         reader.onload = (event: any) => {
-          // called once readAsDataURL is completed
-          // const base64 = event.target.result.substring(
-          //   event.target.result.lastIndexOf(',') + 1,
-          //   event.target.result.length
-          // );
-          // console.log(base64);
-          // this.img = event.target.result; // substitui o src pelo da nova img
-          // this.form.get('imagem').setValue(base64);
           console.log(file);
           this.img = new FormData();
           this.img.append("file", file);

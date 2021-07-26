@@ -59,15 +59,14 @@ export class ImoveisComponent implements OnInit {
   }
 
   getTypesSearch(event) {
-    // TODO: quando seleciona o tipo, exibir apenas imoveis do tipo selecionado
-    console.log("selecionou um tipo de imovel: ", event);
+    this.preencheLista(event.value);
   }
 
-  showFullImg() {
+  showFullImg(imovel) {
     // TODO: precisa enviar por parametro a url da img que foi clicada
     this.dialog.open(ImgDialogComponent, {
       data: {
-        src: './../../../assets/default.png'
+        src: imovel.imagem || './../../../assets/default.png'
       }
     });
   }
@@ -106,5 +105,17 @@ export class ImoveisComponent implements OnInit {
     // TODO: acessar a url de remover do backend
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.preencheLista();
+  }
+
+  preencheLista(tipoImovel = 'todos') {
+    this.imoveisService.getAllImoveisByType(tipoImovel).then(
+      (response: any) => {
+        this.imoveis = response.imoveis;
+      }, error => {
+        console.log(error);
+      }
+    )
+  }
 }
