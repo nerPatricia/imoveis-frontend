@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { VendasEndpointService } from 'src/app/service/vendas-endpoint.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -14,6 +15,7 @@ export class EditarVendaDialogComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private vendasService: VendasEndpointService,
     public dialogRef: MatDialogRef<EditarVendaDialogComponent>,
     private fb: FormBuilder,
   ) { 
@@ -43,6 +45,19 @@ export class EditarVendaDialogComponent implements OnInit {
 
   closeModal(): void {
     this.dialogRef.close({ fechouModal: true });
+  }
+
+  atualizar() {
+    console.log(this.form.value);
+
+    this.vendasService.addVenda(this.form.value).then(
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   cadastrar() {
