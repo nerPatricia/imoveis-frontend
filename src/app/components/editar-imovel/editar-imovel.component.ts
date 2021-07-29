@@ -4,11 +4,14 @@ import {
   FormBuilder,
   FormControl,
   Validators,
+  AbstractControl,
+  ValidationErrors,
 } from "@angular/forms";
 import { Component, Inject } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { ImoveisEndpointService } from "src/app/service/imoveis-endpoint.service";
 import { FileEndpointService } from "src/app/service/file-endpoint.service";
+import * as moment from "moment";
 
 @Component({
   selector: "app-editar-imovel-component",
@@ -54,7 +57,8 @@ export class EditarImovelDialogComponent {
 
   getErrorMessage(field) {
     if (this.form.get(field)) {
-      return this.form.get(field).hasError("required") ? "Campo requerido" : "";
+      return this.form.get(field).hasError("required") ? "Campo requerido" 
+      : "";
     }
   }
 
@@ -62,14 +66,15 @@ export class EditarImovelDialogComponent {
     this.dialogRef.close({ fechouModal: true });
   }
 
-  atualizar() {
-    console.log(this.form.value);
-    this.form.removeControl("imagemPath");
-    this.form.get('imagem').setValue(this.img);
 
+  // TODO: adicionar o endpoint de atualizar quando for atualizar e nao o de adicionar
+  atualizar() {
+    this.formataForm();
+   
     this.fileService.saveImage(this.img).then(
-      (response) => {
+      (response: any) => {
         console.log(response);
+        this.form.get('imagem').setValue(response.image.url);
         this.imoveisService.addImovel(this.form.value).then(
           (response) => {
             console.log(response);
@@ -86,6 +91,13 @@ export class EditarImovelDialogComponent {
 
   imgNull() {
     this.img = null;
+  }
+
+  formataForm() {
+    this.form.removeControl("imagemPath");
+    this.form.get('imagem').setValue(this.img);
+    this.form.get('dataDeCadastro').setValue(new Date(this.form.get('dataDeCadastro').value).toISOString().slice(0, 10));
+    console.log(this.form.value);
   }
 
   onSelectFile(event) {

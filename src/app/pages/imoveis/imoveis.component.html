@@ -39,7 +39,7 @@
         </label>
       </div>
       <div class="thumb" mat-colunm (click)="showFullImg(imovel)">
-        <img src="./../../../assets/default.png">
+        <img [src]="imovel.imagem || './../../../assets/default.png'">
       </div>
       <div mat-line>
         <p class="title">{{ imovel.tipo.toUpperCase() }}</p>

@@ -44,8 +44,14 @@ export class ImoveisEndpointService {
 
   getAllImoveisByType(type) {
     const url = this.backendUrl + '/imovel/listar?tipos=' + 
-      (type != 'todos' ? '["' + type + '"]' : '["Casa","Fazenda","Apartamento","Sala Comercial","Lote","Chacara","Sitio"]');
+      (type != 'todos' ? '["' + type + '"]' : 'todos');
     return this.client.get(url).toPromise();
+  }
+
+  removeImoveis(codigos) {
+    console.log(codigos);
+    const url = this.backendUrl + '/imovel/deletar';
+    return this.client.delete(url, codigos).toPromise();
   }
 
   getAllImoveisUrbanos() {

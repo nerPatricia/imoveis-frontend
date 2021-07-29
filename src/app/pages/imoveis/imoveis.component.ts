@@ -63,7 +63,6 @@ export class ImoveisComponent implements OnInit {
   }
 
   showFullImg(imovel) {
-    // TODO: precisa enviar por parametro a url da img que foi clicada
     this.dialog.open(ImgDialogComponent, {
       data: {
         src: imovel.imagem || './../../../assets/default.png'
@@ -94,7 +93,23 @@ export class ImoveisComponent implements OnInit {
         // TODO: acessar o endpoint de remover imovel aqui 
         // tem o objeto do imovel selecionado no parametro pra pegar as informações
         // se precisar dar um reload na tela depois, usar window.location.reload()
-        Swal.fire('Removido com sucesso', '', 'success');
+        console.log(imovel);
+        const codigos = [
+          imovel.codigo
+        ];
+        // TODO: NAO TA FUNCIONANDO
+        this.imoveisService.removeImoveis({ codigos }).then(
+          (response) => {
+            Swal.fire('Removido com sucesso', '', 'success').then(
+              () => {
+                window.location.reload();
+              }
+            ), error => {
+              console.log(error);
+            }
+          }
+        )
+        
       }
     })
   }
