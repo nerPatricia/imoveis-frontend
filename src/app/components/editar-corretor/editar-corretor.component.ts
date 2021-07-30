@@ -15,7 +15,7 @@ export class EditarCorretorDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<EditarCorretorDialogComponent>,
     private fb: FormBuilder,
   ) { 
-    console.log(data);
+    //console.log(data);
     
     this.form = this.fb.group({
       creci: new FormControl(data.corretor?.creci || '', [Validators.required]),
@@ -25,6 +25,7 @@ export class EditarCorretorDialogComponent implements OnInit {
       percentComissao: new FormControl(data.corretor?.percentComissao || '', [Validators.required]),
       tipoCorretor: new FormControl(data.corretor?.tipoCorretor || 'Contratado', [Validators.required])
     });
+    console.log(this.form);
   }
 
   ngOnInit(): void {

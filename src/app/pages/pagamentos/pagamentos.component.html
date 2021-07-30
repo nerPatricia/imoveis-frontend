@@ -1,0 +1,69 @@
+<div class="main-body elevation-1">
+	<!-- <div class="row" [formGroup]="form">    -->
+	<div class="row">
+		<div class="col-5">
+			<mat-form-field appearance="fill">
+				<mat-label>Selecione o corretor</mat-label>			
+                <mat-select disableRipple (selectionChange)="getTypesSearch($event)">
+                    <mat-option *ngFor="let corretor of pagamentosCorretores" [value]="corretor.nomeCorretor">{{corretor.nomeCorretor}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+		</div>
+		<div class="col-4">
+			<mat-form-field appearance="fill">
+				<mat-label>Digite o mês</mat-label>
+                <input matInput type="date" required />
+			</mat-form-field>
+		</div>
+	</div>
+
+	 <!-- Tabela de Vendas -->
+     <div class="elevation-1 header-color tab">
+        <mat-table [dataSource]="pagamentosCorretores">
+            <!-- :codigo da venda -->
+            <ng-container matColumnDef="creci">
+                <mat-header-cell *matHeaderCellDef> Creci </mat-header-cell>
+                <mat-cell *matCellDef="let pag"> {{pag.creci}} </mat-cell>
+            </ng-container>
+
+            <!-- :codigo do imovel -->
+            <ng-container matColumnDef="nomeCorretor">
+                <mat-header-cell *matHeaderCellDef> Nome do Corretor </mat-header-cell>
+                <mat-cell *matCellDef="let pag"> {{pag.nomeCorretor}} </mat-cell>
+            </ng-container>
+
+            <!-- :valor real -->
+            <ng-container matColumnDef="tipoCorretor">
+                <mat-header-cell *matHeaderCellDef> Tipo do Corretor </mat-header-cell>
+                <mat-cell *matCellDef="let pag"> {{pag.tipoCorretor}} </mat-cell>
+            </ng-container>
+
+            <!-- :valor real -->
+            <ng-container matColumnDef="percentComissao">
+                <mat-header-cell *matHeaderCellDef> Comissão (%) </mat-header-cell>
+                <mat-cell *matCellDef="let pag"> {{pag.percentComissao}} </mat-cell>
+            </ng-container>
+
+            <!-- :valor real -->
+            <ng-container matColumnDef="salario">
+                <mat-header-cell *matHeaderCellDef> Salario (R$) </mat-header-cell>
+                <mat-cell *matCellDef="let pag"> {{pag.salario}} </mat-cell>
+            </ng-container>
+
+            <!-- :valor real -->
+            <ng-container matColumnDef="ganhoTotal">
+                <mat-header-cell *matHeaderCellDef> ganhoTotal (R$) </mat-header-cell>
+                <mat-cell *matCellDef="let pag"> {{pag.ganhoTotal}} </mat-cell>
+            </ng-container>
+
+            <!-- Headers & rows declarations-->
+            <mat-header-row
+                *matHeaderRowDef="['creci', 'nomeCorretor', 'tipoCorretor', 'percentComissao', 'salario', 'ganhoTotal']">
+            </mat-header-row>
+            <mat-row
+                *matRowDef="let row; columns: ['creci', 'nomeCorretor', 'tipoCorretor', 'percentComissao', 'salario', 'ganhoTotal']">
+            </mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>
+    </div>
+</div>

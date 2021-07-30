@@ -25,6 +25,7 @@ import { EditarVendaDialogComponent } from 'src/app/components/editar-venda/edit
 import { ImoveisComponent } from './pages/imoveis/imoveis.component';
 import { CorretoresComponent } from './pages/corretores/corretores.component';
 import { VendasComponent } from './pages/vendas/vendas.component';
+import { PagamentosComponent } from './pages/pagamentos/pagamentos.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { VendasComponent } from './pages/vendas/vendas.component';
     CorretoresComponent,
     EditarCorretorDialogComponent,
     VendasComponent,
-    EditarVendaDialogComponent
+    EditarVendaDialogComponent,
+    PagamentosComponent
   ],
   imports: [
     BrowserModule,

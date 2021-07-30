@@ -24,7 +24,7 @@ export class CorretoresComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     //console.log(this.corretores_cm);
-    console.log(this.corretores);
+    console.log(this.corretores[1].data[1].nome);
   }
 
   ngAfterViewInit() {
