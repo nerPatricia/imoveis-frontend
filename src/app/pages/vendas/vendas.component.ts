@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 import { IVenda } from 'src/app/interfaces/vendas_model';
-import { vendasList } from '../../interfaces/vendas_mock';
+import { VendasEndpointService } from 'src/app/service/vendas-endpoint.service';
 import { EditarVendaDialogComponent } from 'src/app/components/editar-venda/editar-venda.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -14,10 +14,15 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 
 export class VendasComponent implements OnInit, AfterViewInit{
-  vendas = new MatTableDataSource<IVenda>(vendasList);
+  vendas = new MatTableDataSource<IVenda>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(public dialog: MatDialog){}
+  constructor(
+    private vendasService: VendasEndpointService,
+    public dialog: MatDialog
+  ){
+    this.preencheLista();
+  }
 
   ngOnInit(): void {
     console.log(this.vendas);
@@ -54,5 +59,15 @@ export class VendasComponent implements OnInit, AfterViewInit{
         Swal.fire('Removido com sucesso', '', 'success');
       }
     })
+  }
+
+  preencheLista() {
+    this.vendasService.getAllVendas().then(
+      (response: any) => {
+        this.vendas = response.vendas;
+      }, error => {
+        console.log(error); 
+      }
+    )
   }
 }

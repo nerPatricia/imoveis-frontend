@@ -4,11 +4,14 @@ import {
   FormBuilder,
   FormControl,
   Validators,
+  AbstractControl,
+  ValidationErrors,
 } from "@angular/forms";
 import { Component, Inject } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { ImoveisEndpointService } from "src/app/service/imoveis-endpoint.service";
 import { FileEndpointService } from "src/app/service/file-endpoint.service";
+import * as moment from "moment";
 
 @Component({
   selector: "app-editar-imovel-component",
@@ -54,7 +57,8 @@ export class EditarImovelDialogComponent {
 
   getErrorMessage(field) {
     if (this.form.get(field)) {
-      return this.form.get(field).hasError("required") ? "Campo requerido" : "";
+      return this.form.get(field).hasError("required") ? "Campo requerido" 
+      : "";
     }
   }
 
@@ -62,17 +66,24 @@ export class EditarImovelDialogComponent {
     this.dialogRef.close({ fechouModal: true });
   }
 
+
+  // TODO: adicionar o endpoint de atualizar quando for atualizar e nao o de adicionar
   atualizar() {
-    console.log(this.form.value);
-    this.form.removeControl("imagemPath");
-
-    this.fileService.saveImage(this.img);
-
-    this.imoveisService.addImovel(this.form.value).then(
-      (response) => {
+    this.formataForm();
+   
+    this.fileService.saveImage(this.img).then(
+      (response: any) => {
         console.log(response);
-      },
-      (error) => {
+        this.form.get('imagem').setValue(response.image.url);
+        this.imoveisService.addImovel(this.form.value).then(
+          (response) => {
+            console.log(response);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      }, error => {
         console.log(error);
       }
     );
@@ -80,6 +91,13 @@ export class EditarImovelDialogComponent {
 
   imgNull() {
     this.img = null;
+  }
+
+  formataForm() {
+    this.form.removeControl("imagemPath");
+    this.form.get('imagem').setValue(this.img);
+    this.form.get('dataDeCadastro').setValue(new Date(this.form.get('dataDeCadastro').value).toISOString().slice(0, 10));
+    console.log(this.form.value);
   }
 
   onSelectFile(event) {
@@ -91,18 +109,8 @@ export class EditarImovelDialogComponent {
       // só aceita imagens png
       if (file.type.includes("png")) {
         const reader = new FileReader();
-
-        reader.readAsDataURL(event.target.files[0]); // read file as data url
-
+        reader.readAsDataURL(event.target.files[0]);
         reader.onload = (event: any) => {
-          // called once readAsDataURL is completed
-          // const base64 = event.target.result.substring(
-          //   event.target.result.lastIndexOf(',') + 1,
-          //   event.target.result.length
-          // );
-          // console.log(base64);
-          // this.img = event.target.result; // substitui o src pelo da nova img
-          // this.form.get('imagem').setValue(base64);
           console.log(file);
           this.img = new FormData();
           this.img.append("file", file);

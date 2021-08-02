@@ -59,15 +59,13 @@ export class ImoveisComponent implements OnInit {
   }
 
   getTypesSearch(event) {
-    // TODO: quando seleciona o tipo, exibir apenas imoveis do tipo selecionado
-    console.log("selecionou um tipo de imovel: ", event);
+    this.preencheLista(event.value);
   }
 
-  showFullImg() {
-    // TODO: precisa enviar por parametro a url da img que foi clicada
+  showFullImg(imovel) {
     this.dialog.open(ImgDialogComponent, {
       data: {
-        src: './../../../assets/default.png'
+        src: imovel.imagem || './../../../assets/default.png'
       }
     });
   }
@@ -95,7 +93,23 @@ export class ImoveisComponent implements OnInit {
         // TODO: acessar o endpoint de remover imovel aqui 
         // tem o objeto do imovel selecionado no parametro pra pegar as informações
         // se precisar dar um reload na tela depois, usar window.location.reload()
-        Swal.fire('Removido com sucesso', '', 'success');
+        console.log(imovel);
+        const codigos = [
+          imovel.codigo
+        ];
+        // TODO: NAO TA FUNCIONANDO
+        this.imoveisService.removeImoveis({ codigos }).then(
+          (response) => {
+            Swal.fire('Removido com sucesso', '', 'success').then(
+              () => {
+                window.location.reload();
+              }
+            ), error => {
+              console.log(error);
+            }
+          }
+        )
+        
       }
     })
   }
@@ -106,5 +120,17 @@ export class ImoveisComponent implements OnInit {
     // TODO: acessar a url de remover do backend
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.preencheLista();
+  }
+
+  preencheLista(tipoImovel = 'todos') {
+    this.imoveisService.getAllImoveisByType(tipoImovel).then(
+      (response: any) => {
+        this.imoveis = response.imoveis;
+      }, error => {
+        console.log(error);
+      }
+    )
+  }
 }
