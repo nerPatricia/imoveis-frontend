@@ -1,3 +1,4 @@
+import { CorretoresEndpointService } from './../../service/corretores-endpoint.service';
 import { Component, OnInit, ViewChild, AfterViewInit, ViewChildren, QueryList } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { IEmployee } from 'src/app/interfaces/corretores_model';
@@ -19,12 +20,27 @@ export class CorretoresComponent implements OnInit, AfterViewInit {
   @ViewChildren(MatPaginator) paginator: QueryList<MatPaginator>;
 
   constructor(
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private corretoresService: CorretoresEndpointService
   ) {}
 
   ngOnInit(): void {
     //console.log(this.corretores_cm);
     console.log(this.corretores);
+
+    // primeiro, pense que as informações vão vir do backend
+    this.corretoresService.getAllCorretoresByType('todos').then(
+      (response: any) => {
+        // aqui dentro vc tem que preencher os MatTable e também preencher o seu array
+        // com os corretores no obtions
+        // POR EXEMPLO:
+        this.corretores_ct = new MatTableDataSource<IEmployee>(response);
+        this.corretores = response;
+        // esse segundo que vc vai usar no options
+      }, error => {
+        console.log(error);
+      }
+    )
   }
 
   ngAfterViewInit() {

@@ -96,6 +96,8 @@ export class EditarImovelDialogComponent {
   formataForm() {
     this.form.removeControl("imagemPath");
     this.form.get('imagem').setValue(this.img);
+    console.log(this.form.get('dataDeCadastro').value);
+    console.log(new Date(this.form.get('dataDeCadastro').value).toISOString());
     this.form.get('dataDeCadastro').setValue(new Date(this.form.get('dataDeCadastro').value).toISOString().slice(0, 10));
     console.log(this.form.value);
   }
