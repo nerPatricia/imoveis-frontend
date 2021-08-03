@@ -39,9 +39,9 @@
         <!-- :nome corretor -->
         <div class="col-6">
             <mat-form-field appearance="outline">
-                <mat-label>Nome Corretor</mat-label>
-                <input matInput type="text" formControlName="nomeCorretor" required />
-                <mat-error>{{ getErrorMessage("nomeCorretor") }}</mat-error>
+                <mat-label>Creci Corretor</mat-label>
+                <input matInput type="text" formControlName="creciCorretor" required />
+                <mat-error>{{ getErrorMessage("creciCorretor") }}</mat-error>
             </mat-form-field>
         </div>
 
@@ -67,7 +67,7 @@
         <!-- Add button -->
         <div class="col-4">
             <button mat-raised-button color="primary"
-                (click)="cadastrar()">{{ data.venda ? 'Atualizar' : 'Cadastrar' }}</button>
+                (click)="atualizar()">{{ data.venda ? 'Atualizar' : 'Cadastrar' }}</button>
         </div>
     </div>
 </div>

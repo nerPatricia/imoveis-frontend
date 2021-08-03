@@ -3,6 +3,6 @@ export interface IVenda {
     codImovel: string,
     valorReal: number,
     nomeComprador: string,
-    nomeCorretor: string,
+    creciCorretor: string,
     dataVenda: Date,
 }
