@@ -26,8 +26,10 @@
       </button>
     </div>
   </div>
-  <mat-list [formGroup]="form" *ngIf="imoveis.length > 0">
-    <mat-list-item class="box" *ngFor="let imovel of imoveis; let i = index" formArrayName="selecionados">
+  <!-- <mat-list [formGroup]="form" *ngIf="imoveis.length > 0"> -->
+  <mat-list *ngIf="imoveis.length > 0" style="padding-top: 0; margin-bottom: 4em;">
+    <!-- <mat-list-item class="box" *ngFor="let imovel of imoveis; let i = index" formArrayName="selecionados"> -->
+    <mat-list-item class="box" *ngFor="let imovel of imoveis; let i = index">
       <div class="options" mat-colunm>
         <i class="fas fa-edit" (click)="imovelModal(imovel)"></i>
         <br>
@@ -35,7 +37,7 @@
       </div>
       <div class="checkbox" mat-colunm>
         <label>
-          <input type="checkbox" [formControlName]="i" />
+          <!-- <input type="checkbox" [formControlName]="i" /> -->
         </label>
       </div>
       <div class="thumb" mat-colunm (click)="showFullImg(imovel)">

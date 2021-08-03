@@ -27,9 +27,9 @@ export class ImoveisComponent implements OnInit {
     private formBuilder: FormBuilder,
     public dialog: MatDialog
   ) {
-    this.form = this.formBuilder.group({
-      selecionados: new FormArray([], this.minSelectedCheckboxesValidator(1))
-    });
+    // this.form = this.formBuilder.group({
+    //   selecionados: new FormArray([], this.minSelectedCheckboxesValidator(1))
+    // });
 
     // async imoveis (trocar depois pela chamada http)
     of(this.imoveisService.getAllImoveisUrbanos()).subscribe(imoveis => {
@@ -55,7 +55,7 @@ export class ImoveisComponent implements OnInit {
   }
 
   addCheckboxes() {
-    this.imoveis.forEach(() => this.selecionadosFormArray.push(new FormControl(false)));
+    // this.imoveis.forEach(() => this.selecionadosFormArray.push(new FormControl(false)));
   }
 
   getTypesSearch(event) {

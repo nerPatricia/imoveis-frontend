@@ -3,15 +3,12 @@ import {
   FormGroup,
   FormBuilder,
   FormControl,
-  Validators,
-  AbstractControl,
-  ValidationErrors,
+  Validators
 } from "@angular/forms";
 import { Component, Inject } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { ImoveisEndpointService } from "src/app/service/imoveis-endpoint.service";
 import { FileEndpointService } from "src/app/service/file-endpoint.service";
-import * as moment from "moment";
 
 @Component({
   selector: "app-editar-imovel-component",
@@ -73,11 +70,12 @@ export class EditarImovelDialogComponent {
    
     this.fileService.saveImage(this.img).then(
       (response: any) => {
+        console.log("SALVOU IMAGEM");
         console.log(response);
         this.form.get('imagem').setValue(response.image.url);
         this.imoveisService.addImovel(this.form.value).then(
           (response) => {
-            console.log(response);
+            Swal.fire('Imovel cadastrado com sucesso', '', 'success').then(() => window.location.reload());
           },
           (error) => {
             console.log(error);
@@ -96,10 +94,11 @@ export class EditarImovelDialogComponent {
   formataForm() {
     this.form.removeControl("imagemPath");
     this.form.get('imagem').setValue(this.img);
-    console.log(this.form.get('dataDeCadastro').value);
-    console.log(new Date(this.form.get('dataDeCadastro').value).toISOString());
-    this.form.get('dataDeCadastro').setValue(new Date(this.form.get('dataDeCadastro').value).toISOString().slice(0, 10));
-    console.log(this.form.value);
+    const dia  = this.form.get('dataDeCadastro').value.split("/")[0];
+    const mes  = this.form.get('dataDeCadastro').value.split("/")[1];
+    const ano  = this.form.get('dataDeCadastro').value.split("/")[2];
+
+    this.form.get('dataDeCadastro').setValue(ano + '-' + ("0" + mes).slice(-2) + '-' + ("0" + dia).slice(-2));
   }
 
   onSelectFile(event) {
