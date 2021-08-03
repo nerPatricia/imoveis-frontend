@@ -1,9 +1,10 @@
 //exportando o modelo que será utilizado para os funcionários
 export interface IEmployee {
+    tipo: string;
     creci : number,	
     nome: string,
     salario?: number,
-    dataAdmissao?: string,
-    percentComissao?: number //(float entre 1 e 3)
+    dataAdmissao?: Date,
+    comissao?: number //(float entre 1 e 3)
 }
   

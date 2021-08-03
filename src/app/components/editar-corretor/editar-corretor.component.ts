@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { CorretoresEndpointService } from 'src/app/service/corretores-endpoint.service';
 
 @Component({
   selector: 'app-editar-corretor',
@@ -12,6 +13,7 @@ export class EditarCorretorDialogComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private corretoresService: CorretoresEndpointService,
     public dialogRef: MatDialogRef<EditarCorretorDialogComponent>,
     private fb: FormBuilder,
   ) { 
@@ -22,8 +24,8 @@ export class EditarCorretorDialogComponent implements OnInit {
       nome: new FormControl(data.corretor?.nome || '', [Validators.required]),
       salario: new FormControl(data.corretor?.salario || '', [Validators.required]),
       dataAdmissao: new FormControl(data.corretor?.dataAdmissao || '', [Validators.required]),
-      percentComissao: new FormControl(data.corretor?.percentComissao || '', [Validators.required]),
-      tipoCorretor: new FormControl(data.corretor?.tipoCorretor || 'Contratado', [Validators.required])
+      comissao: new FormControl(data.corretor?.comissao || '', [Validators.required]),
+      tipo: new FormControl(data.corretor?.tipo || 'Contratado', [Validators.required])
     });
     console.log(this.form);
   }
@@ -37,5 +39,18 @@ export class EditarCorretorDialogComponent implements OnInit {
 
   cadastrar() {
     console.log(this.form.value);
+  }
+
+  atualizar() {
+    console.log(this.form.value);
+
+    this.corretoresService.addCorretor(this.form.value).then(
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }
