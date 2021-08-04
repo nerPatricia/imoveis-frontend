@@ -2,7 +2,6 @@ import { CorretoresEndpointService } from './../../service/corretores-endpoint.s
 import { Component, OnInit, ViewChild, AfterViewInit, ViewChildren, QueryList } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { IEmployee } from 'src/app/interfaces/corretores_model';
-import { CORRETORES_CM, CORRETORES_CT } from '../../interfaces/corretores_mock';
 import { EditarCorretorDialogComponent } from 'src/app/components/editar-corretor/editar-corretor.component';
 import { MatDialog } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
@@ -14,18 +13,17 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['./corretores.component.less']
 })
 export class CorretoresComponent implements OnInit, AfterViewInit {
-  corretores_ct = new MatTableDataSource<IEmployee>(CORRETORES_CT);  //corretores é do tipo Employee (interface) que será um array que armazena os fake employee
-  corretores_cm = new MatTableDataSource<IEmployee>(CORRETORES_CM);  //corretores é do tipo Employee (interface) que será um array que armazena os fake employee
-  corretores = [this.corretores_ct, this.corretores_cm];
-  @ViewChildren(MatPaginator) paginator: QueryList<MatPaginator>;
+  corretores = new MatTableDataSource<IEmployee>();
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
-    public dialog: MatDialog,
-    private corretoresService: CorretoresEndpointService
-  ) {}
+    private corretoresService: CorretoresEndpointService,
+    public dialog: MatDialog
+  ) {
+    this.preencheLista();
+  }
 
   ngOnInit(): void {
-    //console.log(this.corretores_cm);
     console.log(this.corretores);
 
     // primeiro, pense que as informações vão vir do backend
@@ -34,7 +32,7 @@ export class CorretoresComponent implements OnInit, AfterViewInit {
         // aqui dentro vc tem que preencher os MatTable e também preencher o seu array
         // com os corretores no obtions
         // POR EXEMPLO:
-        this.corretores_ct = new MatTableDataSource<IEmployee>(response);
+        //this.corretores_ct = new MatTableDataSource<IEmployee>(response);
         this.corretores = response;
         // esse segundo que vc vai usar no options
       }, error => {
@@ -44,8 +42,7 @@ export class CorretoresComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.corretores_ct.paginator = this.paginator.first;
-    this.corretores_cm.paginator = this.paginator.last;
+    this.corretores.paginator = this.paginator;
   }
 
   corretorModal(corretor?) {
@@ -75,5 +72,26 @@ export class CorretoresComponent implements OnInit, AfterViewInit {
         Swal.fire('Removido com sucesso', '', 'success');
       }
     })
+  }
+
+  changeTab(event){
+    if(event.index == 0)
+      this.preencheLista("Contratado");
+    else
+      this.preencheLista("Comissionado");
+    // if(this.tipoCorretor == "Contratado")
+    //   this.tipoCorretor = "Comissionado";
+    // else
+    //   this.tipoCorretor = "Contratado";
+  }
+
+  preencheLista(tipoCorretor = "Contratado") {
+    this.corretoresService.getAllCorretoresByType(tipoCorretor).then(
+      (response: any) => {
+        this.corretores = response.corretores;
+      }, error => {
+        console.log(error); 
+      }
+    )
   }
 }

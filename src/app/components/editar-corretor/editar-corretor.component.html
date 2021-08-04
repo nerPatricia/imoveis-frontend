@@ -9,7 +9,7 @@
     <div class="col-6">
       <mat-form-field appearance="fill">
         <mat-label>Selecione o tipo do Corretor</mat-label>
-        <mat-select disableRipple formControlName="tipoCorretor">
+        <mat-select disableRipple formControlName="tipo">
           <mat-option value="Contratado">Contratado</mat-option>
           <mat-option value="Comissionado">Comissionado</mat-option>
         </mat-select>
@@ -27,22 +27,22 @@
         <input matInput type="text" formControlName="nome" required />
       </mat-form-field>
     </div>
-    <div class="col-6" *ngIf="form.get('tipoCorretor').value == 'Contratado'">
+    <div class="col-6" *ngIf="form.get('tipo').value == 'Contratado'">
       <mat-form-field appearance="outline">
         <mat-label>Salário</mat-label>
         <input matInput type="number" formControlName="salario" required />
       </mat-form-field>
     </div>
-    <div class="col-6" *ngIf="form.get('tipoCorretor').value == 'Comissionado'">
+    <div class="col-6" *ngIf="form.get('tipo').value == 'Comissionado'">
       <mat-form-field appearance="outline">
         <mat-label>Percentual de Comissão</mat-label>
-        <input matInput type="number" formControlName="percentComissao" required />
+        <input matInput type="number" formControlName="comissao" required />
       </mat-form-field>
     </div>
     <div class="col-6">
       <mat-form-field appearance="outline">
         <mat-label>Data de Admissão</mat-label>
-        <input matInput type="text" formControlName="dataAdmissao" required />
+        <input matInput type="text" formControlName="dataAdmissao" placeholder="dd/mm/yyyy" mask="00/00/0000" required />
       </mat-form-field>
     </div>
   </div>
@@ -53,7 +53,7 @@
       <button mat-raised-button color="accent" (click)="closeModal()">Cancelar</button>
     </div>
     <div class="col-4">
-      <button mat-raised-button color="primary" (click)="cadastrar()"> Cadastrar
+      <button mat-raised-button color="primary" (click)="atualizar()"> {{ data.corretor ? 'Atualizar' : 'Cadastrar' }}
       </button>
     </div>
   </div>
