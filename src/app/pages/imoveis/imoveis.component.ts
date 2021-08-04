@@ -130,7 +130,7 @@ export class ImoveisComponent {
     }).then((result) => {
       if (result.isConfirmed) {
         this.imoveisService
-          .removeImoveisSelecionados(codigos)
+          .removeImoveisSelecionados({ codigos })
           .then((response) => {
             Swal.fire('Removidos com sucesso', '', 'success').then(() => {
               window.location.reload();
