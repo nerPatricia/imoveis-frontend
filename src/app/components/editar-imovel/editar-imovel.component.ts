@@ -67,13 +67,28 @@ export class EditarImovelDialogComponent {
     this.dialogRef.close({ fechouModal: true });
   }
 
-
-  // TODO: adicionar o endpoint de atualizar quando for atualizar e nao o de adicionar
   atualizar() {
     this.formataForm();
-   
-    if (this.data) {
-      console.log(this.data);
+
+    if (this.data && this.form.get('imagem').value) {
+      this.fileService.saveImage(this.img).then(
+        (response: any) => {
+          console.log("SALVOU IMAGEM ATUALIZADA");
+          console.log(response);
+          this.form.get('imagem').setValue(response.image.url);
+          this.imoveisService.updateImovelById(this.form.value, this.data.imovel._id).then(
+            (response) => {
+              Swal.fire('Imovel atualizado com sucesso', '', 'success').then(() => window.location.reload());
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
+        }, error => {
+          console.log("erro ao salvar imagem");
+        }
+      );
+    } else if (this.data) {
       this.imoveisService.updateImovelById(this.form.value, this.data.imovel._id).then(
         (response) => {
           Swal.fire('Imovel atualizado com sucesso', '', 'success').then(() => window.location.reload());
