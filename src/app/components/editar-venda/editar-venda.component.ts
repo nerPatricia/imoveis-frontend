@@ -57,7 +57,7 @@ export class EditarVendaDialogComponent implements OnInit {
         .updateVendaById(this.form.value, this.data.venda._id)
         .then(
           (response) => {
-            Swal.fire('Imovel atualizado com sucesso', '', 'success').then(() =>
+            Swal.fire('Venda atualizada com sucesso', '', 'success').then(() =>
               window.location.reload()
             );
           },

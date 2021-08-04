@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -27,8 +28,8 @@ export class EditarCorretorDialogComponent implements OnInit {
       comissao: new FormControl(data.corretor?.comissao || '', [Validators.required]),
       tipo: new FormControl(data.corretor?.tipo || 'Contratado', [Validators.required])
     });
-
     if (this.data.corretor) {
+      this.form.get('tipo').disable();
       this.form.get('creci').disable();
     }
   }
@@ -45,14 +46,22 @@ export class EditarCorretorDialogComponent implements OnInit {
   }
 
   atualizar() {
-    if (this.form.get('dataAdmissao').value.includes('/')) {
-      // se a data incluir uma / quer dizer q nao ta no formato date, entao tem q formatar
-      const dia = this.form.get('dataAdmissao').value.split("/")[0];
-      const mes = this.form.get('dataAdmissao').value.split("/")[1];
-      const ano = this.form.get('dataAdmissao').value.split("/")[2];
-      this.form.get('dataAdmissao').setValue(ano + '-' + ("0" + mes).slice(-2) + '-' + ("0" + dia).slice(-2))
-    }
+    this.formataForm();
 
+    if(this.data.corretor){
+      this.corretoresService
+        .updateCorretorById(this.form.value, this.data.corretor._id)
+        .then(
+          (response) => {
+            Swal.fire('Corretor atualizado com sucesso', '', 'success').then(() =>
+              window.location.reload()
+            );
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+    } else {
     this.corretoresService.addCorretor(this.form.value).then(
       (response) => {
         console.log(response);
@@ -61,5 +70,20 @@ export class EditarCorretorDialogComponent implements OnInit {
         console.log(error);
       }
     );
+    }
+  }
+
+  formataForm() {
+    if (this.form.get('dataAdmissao').value.includes('/')) {
+      // se a data incluir uma / quer dizer q nao ta no formato date, entao tem q formatar
+      const dia = this.form.get('dataAdmissao').value.split('/')[0];
+      const mes = this.form.get('dataAdmissao').value.split('/')[1];
+      const ano = this.form.get('dataAdmissao').value.split('/')[2];
+      this.form
+        .get('dataAdmissao')
+        .setValue(
+          ano + '-' + ('0' + mes).slice(-2) + '-' + ('0' + dia).slice(-2)
+        );
+    }
   }
 }
