@@ -60,7 +60,8 @@
     <div class="col-12 inputimg">
       <div class="fileinput fileinput-new text-center" data-provides="fileinput" text-center>
         <div class="fileinput-new thumbnail">
-          <img *ngIf="img" [src]="img" alt="..." />
+          <img *ngIf="img || imgBase64 || form.get('imagem').value" [src]="imgBase64 || form.get('imagem').value"
+            alt="..." />
         </div>
         <div class="fileinput-preview fileinput-exists thumbnail"></div>
         <div>
