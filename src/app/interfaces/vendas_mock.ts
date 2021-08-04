@@ -3,26 +3,26 @@ import { IVenda } from "./vendas_model";
 export const vendasList: IVenda[] = [
     {
         codVenda: "100",
-        codImovel: "1101",
-        valorReal: 1500.50,
+        codigoImovel: "1101",
+        valor: 1500.50,
         nomeComprador: "Comprador1",
-        nomeCorretor: "Corretor1",
+        creciCorretor: "Corretor1",
         dataVenda: new Date('2019-01-16'),
     },
     {
         codVenda: "101",
-        codImovel: "1102",
-        valorReal: 1000,
+        codigoImovel: "1102",
+        valor: 1000,
         nomeComprador: "Comprador1",
-        nomeCorretor: "Corretor2",
+        creciCorretor: "Corretor2",
         dataVenda: new Date('2019-01-16'),
     },
     {
         codVenda: "102",
-        codImovel: "1103",
-        valorReal: 3000.75,
+        codigoImovel: "1103",
+        valor: 3000.75,
         nomeComprador: "Comprador2",
-        nomeCorretor: "Corretor1",
+        creciCorretor: "Corretor1",
         dataVenda: new Date('2019-01-16'),
     }
 ]

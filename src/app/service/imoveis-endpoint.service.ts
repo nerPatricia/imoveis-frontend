@@ -1,7 +1,6 @@
 import { environment } from '../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -38,18 +37,29 @@ export class ImoveisEndpointService {
     return this.client.post(url, imovel).toPromise();
   }
 
+  updateImovelById(imovel, id) {
+    const url = this.backendUrl + '/imovel/alterar/' + id;
+    return this.client.put(url, imovel).toPromise();
+  }
+
+  getAllImoveisByType(type) {
+    const url = this.backendUrl + '/imovel/listar?tipos=' + 
+      (type != 'todos' ? '["' + type + '"]' : 'todos');
+    return this.client.get(url).toPromise();
+  }
+
+  removeImoveisById(codigo) {
+    const url = this.backendUrl + '/imovel/deletar/' + codigo;
+    return this.client.delete(url).toPromise();
+  }
+
+  removeImoveisSelecionados(codigos) {
+    const url = this.backendUrl + '/imovel/deletar';
+    return this.client.post(url, codigos).toPromise();
+  }
+
   getAllImoveisUrbanos() {
     console.log(this.urbanos);
     return this.urbanos;
   }
-
-  // getGameById(consoleType: string, gameId): Observable<any> {
-  //   const url = this.backendUrl + '/' + consoleType + '/game/' + gameId;
-  //   return this.client.get(url);
-  // }
-
-  // registerReview(reviewData): Observable<any> {
-  //   const url = this.backendUrl + '/review';
-  //   return this.client.post(url, reviewData);
-  // }
 }

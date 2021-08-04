@@ -1,0 +1,82 @@
+<div class="main-body elevation-1">
+    <div class="row" [formGroup]="form">
+        <div class="col">
+            <mat-form-field appearance="fill">
+                <mat-label>Selecione o corretor</mat-label>
+                <mat-select disableRipple formControlName="creciCorretor" required>
+                    <mat-option *ngFor="let corretor of listaCorretor" [value]="corretor.creci">{{corretor.nome}} -
+                        {{corretor.creci}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field appearance="fill">
+                <mat-label>Mês</mat-label>
+                <mat-select disableRipple formControlName="mes" required>
+                    <mat-option *ngFor="let mes of meses; let i = index;" [value]="i">{{mes}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field appearance="fill">
+                <mat-label>ano</mat-label>
+                <input matInput type="text" placeholder="yyyy" formControlName="ano" mask="0000" required />
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <button mat-raised-button class="btn" (click)="preencheLista()">
+                <i class="fa fa-plus"></i>&nbsp;Buscar
+            </button>
+        </div>
+    </div>
+
+    <!-- Tabela de Vendas -->
+    <div class="elevation-1 header-color tab">
+        <mat-table [dataSource]="salario">
+            <!-- :codigo da venda -->
+            <ng-container matColumnDef="creci">
+                <mat-header-cell *matHeaderCellDef> Creci </mat-header-cell>
+                <mat-cell *matCellDef="let pag"> {{salario.creci}} </mat-cell>
+            </ng-container>
+
+            <!-- :codigo do imovel -->
+            <ng-container matColumnDef="nomeCorretor">
+                <mat-header-cell *matHeaderCellDef> Nome do Corretor </mat-header-cell>
+                <mat-cell *matCellDef="let pag"> {{salario.nomeCorretor}} </mat-cell>
+            </ng-container>
+
+            <!-- :valor real -->
+            <ng-container matColumnDef="tipoCorretor">
+                <mat-header-cell *matHeaderCellDef> Tipo do Corretor </mat-header-cell>
+                <mat-cell *matCellDef="let pag"> {{salario.tipoCorretor}} </mat-cell>
+            </ng-container>
+
+            <!-- :valor real -->
+            <ng-container matColumnDef="percentComissao">
+                <mat-header-cell *matHeaderCellDef> Comissão (%) </mat-header-cell>
+                <mat-cell *matCellDef="let pag"> {{salario.percentComissao}} </mat-cell>
+            </ng-container>
+
+            <!-- :valor real -->
+            <ng-container matColumnDef="salario">
+                <mat-header-cell *matHeaderCellDef> Salario (R$) </mat-header-cell>
+                <mat-cell *matCellDef="let pag"> {{salario.salario}} </mat-cell>
+            </ng-container>
+
+            <!-- :valor real -->
+            <ng-container matColumnDef="ganhoTotal">
+                <mat-header-cell *matHeaderCellDef> ganhoTotal (R$) </mat-header-cell>
+                <mat-cell *matCellDef="let pag"> {{salario.ganhoTotal}} </mat-cell>
+            </ng-container>
+
+            <!-- Headers & rows declarations-->
+            <mat-header-row
+                *matHeaderRowDef="['creci', 'nomeCorretor', 'tipoCorretor', 'percentComissao', 'salario', 'ganhoTotal']">
+            </mat-header-row>
+            <mat-row
+                *matRowDef="let row; columns: ['creci', 'nomeCorretor', 'tipoCorretor', 'percentComissao', 'salario', 'ganhoTotal']">
+            </mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>
+    </div>
+</div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!-- Titulo -->
 <h1 mat-dialog-title class="titulo-modal">
-    EDITAR VENDA
+    {{ titulo }}
     <i (click)="closeModal()" class="material-icons btn-fechar">close</i>
     <span id="fechar" (click)="closeModal()">FECHAR</span>
 </h1>
@@ -9,21 +9,12 @@
 <!-- formulario venda -->
 <div mat-dialog-content class="dialog-body" [formGroup]="form">
     <div class="row" style="padding: 1em 2.3em;">
-        <!-- :codigo da venda [colocar para gerar automaticamente depois]-->
-        <div class="col-6" *ngIf="data.venda">
-            <mat-form-field appearance="outline">
-                <mat-label>Codigo Venda</mat-label>
-                <input matInput type="text" formControlName="codVenda" required />
-                <mat-error>{{ getErrorMessage("codVenda") }}</mat-error>
-            </mat-form-field>
-        </div>
-
         <!-- :codigo do Imovel -->
         <div class="col-6">
             <mat-form-field appearance="outline">
                 <mat-label>Codigo Imovel</mat-label>
-                <input matInput type="text" formControlName="codImovel" required />
-                <mat-error>{{ getErrorMessage("codImovel") }}</mat-error>
+                <input matInput type="text" formControlName="codigoImovel" />
+                <mat-error>{{ getErrorMessage("codigoImovel") }}</mat-error>
             </mat-form-field>
         </div>
 
@@ -31,8 +22,8 @@
         <div class="col-6">
             <mat-form-field appearance="outline">
                 <mat-label>Valor Real</mat-label>
-                <input matInput type="text" formControlName="valorReal" required />
-                <mat-error>{{ getErrorMessage("valorReal") }}</mat-error>
+                <input matInput type="text" formControlName="valor" prefix="R$" mask="separator.2" required />
+                <mat-error>{{ getErrorMessage("valor") }}</mat-error>
             </mat-form-field>
         </div>
 
@@ -48,9 +39,9 @@
         <!-- :nome corretor -->
         <div class="col-6">
             <mat-form-field appearance="outline">
-                <mat-label>Nome Corretor</mat-label>
-                <input matInput type="text" formControlName="nomeCorretor" required />
-                <mat-error>{{ getErrorMessage("nomeCorretor") }}</mat-error>
+                <mat-label>Creci Corretor</mat-label>
+                <input matInput type="text" formControlName="creciCorretor" required />
+                <mat-error>{{ getErrorMessage("creciCorretor") }}</mat-error>
             </mat-form-field>
         </div>
 
@@ -58,7 +49,8 @@
         <div class="col-6">
             <mat-form-field appearance="outline">
                 <mat-label>Data Venda</mat-label>
-                <input matInput type="text" formControlName="dataVenda" placeholder="dd/mm/yyyy" required />
+                <input matInput type="text" formControlName="dataVenda" placeholder="dd/mm/yyyy" mask="00/00/0000"
+                    required />
                 <mat-error>{{ getErrorMessage("dataVenda") }}</mat-error>
             </mat-form-field>
         </div>
@@ -76,7 +68,7 @@
         <!-- Add button -->
         <div class="col-4">
             <button mat-raised-button color="primary"
-                (click)="cadastrar()">{{ data.venda ? 'Atualizar' : 'Cadastrar' }}</button>
+                (click)="atualizar()">{{ data.venda ? 'Atualizar' : 'Cadastrar' }}</button>
         </div>
     </div>
 </div>

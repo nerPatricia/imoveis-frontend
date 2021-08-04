@@ -7,9 +7,9 @@
         </div>
     </div>
     <div class="elevation-1 header-color">
-        <mat-tab-group dynamicHeight class="tab">
-            <mat-tab label="Funcionários Contratados">
-                <mat-table [dataSource]="corretores_ct">
+        <mat-tab-group dynamicHeight class="tab" (selectedTabChange)="changeTab($event)">
+            <mat-tab value="Contratado" label="Funcionários Contratados">
+                <mat-table [dataSource]="corretores">
                     <!-- Actions -->
                     <ng-container matColumnDef="actions">
                         <mat-header-cell *matHeaderCellDef> Opções </mat-header-cell>
@@ -43,7 +43,7 @@
                     <!-- Comissão Definition -->
                     <ng-container matColumnDef="comissao">
                         <mat-header-cell *matHeaderCellDef> Comissão (%) </mat-header-cell>
-                        <mat-cell *matCellDef="let corretor"> {{corretor.percentComissao}} </mat-cell>
+                        <mat-cell *matCellDef="let corretor"> {{corretor.comissao}}% </mat-cell>
                     </ng-container>
 
                     <!-- Nome Definition -->
@@ -62,8 +62,8 @@
                 </mat-table>
                 <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>
             </mat-tab>
-            <mat-tab label="Funcionários Comissionados">
-                <mat-table [dataSource]="corretores_cm">
+            <mat-tab value="Comissionado" label="Funcionários Comissionados">
+                <mat-table [dataSource]="corretores">
                     <!-- Actions -->
                     <ng-container matColumnDef="actions">
                         <mat-header-cell *matHeaderCellDef> Opções </mat-header-cell>
@@ -91,7 +91,7 @@
                     <!-- Comissão Definition -->
                     <ng-container matColumnDef="comissao">
                         <mat-header-cell *matHeaderCellDef> Percentual de Comissão (%) </mat-header-cell>
-                        <mat-cell *matCellDef="let corretor"> {{corretor.percentComissao}} </mat-cell>
+                        <mat-cell *matCellDef="let corretor"> {{corretor.comissao}}% </mat-cell>
                     </ng-container>
 
                     <!-- Header and Row Declarations -->

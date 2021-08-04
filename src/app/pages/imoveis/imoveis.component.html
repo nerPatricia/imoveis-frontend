@@ -5,13 +5,13 @@
         <mat-label>Selecione o tipo do imóvel</mat-label>
         <mat-select disableRipple [(ngModel)]="tipoImovel" (selectionChange)="getTypesSearch($event)">
           <mat-option value="todos">Todos</mat-option>
-          <mat-option value="casa">Casa</mat-option>
-          <mat-option value="apartamento">Apartamento</mat-option>
-          <mat-option value="salaComercial">Sala comercial</mat-option>
-          <mat-option value="lote">Lote</mat-option>
-          <mat-option value="chacara">Chácara</mat-option>
-          <mat-option value="sitio">Sitio</mat-option>
-          <mat-option value="fazenda">Fazenda</mat-option>
+          <mat-option value="Casa">Casa</mat-option>
+          <mat-option value="Apartamento">Apartamento</mat-option>
+          <mat-option value="Sala Comercial">Sala comercial</mat-option>
+          <mat-option value="Lote">Lote</mat-option>
+          <mat-option value="Chacara">Chácara</mat-option>
+          <mat-option value="Sitio">Sitio</mat-option>
+          <mat-option value="Fazenda">Fazenda</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
@@ -26,8 +26,10 @@
       </button>
     </div>
   </div>
-  <mat-list [formGroup]="form" *ngIf="imoveis.length > 0">
+  <mat-list [formGroup]="form">
+    <!-- <mat-list *ngIf="imoveis.length > 0" style="padding-top: 0; margin-bottom: 4em;"> -->
     <mat-list-item class="box" *ngFor="let imovel of imoveis; let i = index" formArrayName="selecionados">
+      <!-- <mat-list-item class="box" *ngFor="let imovel of imoveis; let i = index"> -->
       <div class="options" mat-colunm>
         <i class="fas fa-edit" (click)="imovelModal(imovel)"></i>
         <br>
@@ -38,8 +40,8 @@
           <input type="checkbox" [formControlName]="i" />
         </label>
       </div>
-      <div class="thumb" mat-colunm (click)="showFullImg()">
-        <img src="./../../../assets/default.png">
+      <div class="thumb" mat-colunm (click)="showFullImg(imovel)">
+        <img [src]="imovel.imagem || './../../../assets/default.png'">
       </div>
       <div mat-line>
         <p class="title">{{ imovel.tipo.toUpperCase() }}</p>
@@ -50,7 +52,7 @@
       </div>
     </mat-list-item>
   </mat-list>
-  <p *ngIf="imoveis.length == 0">Não há imóveis cadastrados.</p>
+  <!-- <p class="sem-cadastro" *ngIf="imoveis.length == 0">Não há imóveis cadastrados.</p> -->
 </div>
 
 
