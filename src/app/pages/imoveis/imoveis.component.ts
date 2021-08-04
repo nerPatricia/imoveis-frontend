@@ -73,10 +73,11 @@ export class ImoveisComponent {
     });
   }
 
-  imovelModal(imovel?) {
+  imovelModal(modalTitle, imovel?) {
     this.dialog.open(EditarImovelDialogComponent, {
       data: {
         imovel: imovel || null,
+        modalTitle: modalTitle || null
       },
       width: '700px',
       backdropClass: 'modal-menor',

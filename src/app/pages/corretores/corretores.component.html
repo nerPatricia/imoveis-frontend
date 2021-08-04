@@ -1,7 +1,7 @@
 <div class="main-body elevation-1">
     <div class="row">
         <div class="col-2">
-            <button mat-raised-button class="btn" (click)="corretorModal()">
+            <button mat-raised-button class="btn" (click)="corretorModal('NOVO')">
                 <i class="fa fa-plus"></i>&nbsp;Novo
             </button>
         </div>
@@ -15,7 +15,7 @@
                         <mat-header-cell *matHeaderCellDef> Opções </mat-header-cell>
                         <mat-cell *matCellDef="let row">
                             <div class="options" mat-colunm>
-                                <i class="fas fa-edit" (click)="corretorModal(row)"></i>
+                                <i class="fas fa-edit" (click)="corretorModal('ALTERAR', row)"></i>
                                 <br>
                                 <i class="fas fa-trash-alt" (click)="deletarCorretor(row)"></i>
                             </div>
