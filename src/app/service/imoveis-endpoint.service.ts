@@ -8,28 +8,6 @@ import { HttpClient } from '@angular/common/http';
 export class ImoveisEndpointService {
   backendUrl = environment.backend;
 
-  //TODO: remover esse mock e adicionar funções que acessar o backend;
-  urbanos = [
-    {
-      codigo: '100',
-      tipo: 'Casa',
-      descricao: 'Casa na Boa Vista com 4 quartos, cozinha americana e sala conjugada, 2 banheiros e área externa.',
-      proprietarioDoImovel: 'livia g.',
-      precoSolicitado: '400.000,00',
-      imagem: null,
-      dataDeCadastro: null,
-    },
-    {
-      codigo: '101',
-      tipo: 'Apartamento',
-      descricao: 'Apartamento na Varginha no Edificio DeVille. Possui 3 quartos, sala, cozinha, área de serviço e vaga na garagem.',
-      proprietarioDoImovel: 'luis h. de souza',
-      precoSolicitado: '800.000,00',
-      imagem: null,
-      dataDeCadastro: null
-    }
-  ];
-
   constructor(private client: HttpClient) {}
 
   addImovel(imovel) {
@@ -43,9 +21,17 @@ export class ImoveisEndpointService {
   }
 
   getAllImoveisByType(type) {
-    const url = this.backendUrl + '/imovel/listar?tipos=' + 
+    if(type == 'urbano'){
+      const url = this.backendUrl + '/imovel/listar?tipos=[]&local=urbano'
+      return this.client.get(url).toPromise(); 
+    } else if (type == 'rural'){
+      const url = this.backendUrl + '/imovel/listar?tipos=[]&local=rural'
+      return this.client.get(url).toPromise(); 
+    } else {
+      const url = this.backendUrl + '/imovel/listar?tipos=' + 
       (type != 'todos' ? '["' + type + '"]' : 'todos');
-    return this.client.get(url).toPromise();
+      return this.client.get(url).toPromise(); 
+    }
   }
 
   removeImoveisById(codigo) {
@@ -59,7 +45,7 @@ export class ImoveisEndpointService {
   }
 
   getAllImoveisUrbanos() {
-    console.log(this.urbanos);
-    return this.urbanos;
+    const url = this.backendUrl + '/imovel/listar?local=urbano'
+    return this.client.get(url).toPromise();
   }
 }
