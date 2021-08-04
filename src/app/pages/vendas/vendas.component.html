@@ -23,21 +23,21 @@
             </ng-container>
 
             <!-- :codigo da venda -->
-            <ng-container matColumnDef="codVenda">
+            <!-- <ng-container matColumnDef="codVenda">
                 <mat-header-cell *matHeaderCellDef> Cod. Venda </mat-header-cell>
                 <mat-cell *matCellDef="let venda"> {{venda.codVenda}} </mat-cell>
-            </ng-container>
+            </ng-container> -->
 
             <!-- :codigo do imovel -->
-            <ng-container matColumnDef="codImovel">
+            <ng-container matColumnDef="codigoImovel">
                 <mat-header-cell *matHeaderCellDef> Cod. Imovel </mat-header-cell>
-                <mat-cell *matCellDef="let venda"> {{venda.codImovel}} </mat-cell>
+                <mat-cell *matCellDef="let venda"> {{venda.codigoImovel}} </mat-cell>
             </ng-container>
 
             <!-- :valor real -->
-            <ng-container matColumnDef="valorReal">
+            <ng-container matColumnDef="valor">
                 <mat-header-cell *matHeaderCellDef> Valor Real </mat-header-cell>
-                <mat-cell *matCellDef="let venda"> {{venda.valorReal | currency: 'BRL': 'R$'}} </mat-cell>
+                <mat-cell *matCellDef="let venda"> {{venda.valor | currency: 'BRL': 'R$'}} </mat-cell>
             </ng-container>
 
             <!-- :nome do comprador -->
@@ -47,9 +47,9 @@
             </ng-container>
 
             <!-- :nome do corretor -->
-            <ng-container matColumnDef="nomeCorretor">
-                <mat-header-cell *matHeaderCellDef> Nome Corretor </mat-header-cell>
-                <mat-cell *matCellDef="let venda"> {{venda.nomeCorretor}} </mat-cell>
+            <ng-container matColumnDef="creciCorretor">
+                <mat-header-cell *matHeaderCellDef> CRECI Corretor </mat-header-cell>
+                <mat-cell *matCellDef="let venda"> {{venda.creciCorretor}} </mat-cell>
             </ng-container>
 
             <!-- :data da venda -->
@@ -60,10 +60,10 @@
 
             <!-- Headers & rows declarations-->
             <mat-header-row
-                *matHeaderRowDef="['actions', 'codVenda', 'codImovel', 'valorReal', 'nomeComprador', 'nomeCorretor', 'dataVenda']">
+                *matHeaderRowDef="['actions', 'codigoImovel', 'valor', 'nomeComprador', 'creciCorretor', 'dataVenda']">
             </mat-header-row>
             <mat-row
-                *matRowDef="let row; columns: ['actions', 'codVenda', 'codImovel', 'valorReal', 'nomeComprador', 'nomeCorretor', 'dataVenda']">
+                *matRowDef="let row; columns: ['actions', 'codigoImovel', 'valor', 'nomeComprador', 'creciCorretor', 'dataVenda']">
             </mat-row>
         </mat-table>
         <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>

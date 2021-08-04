@@ -41,7 +41,13 @@ export class EditarCorretorDialogComponent implements OnInit {
   }
 
   atualizar() {
-    console.log(this.form.value);
+    if (this.form.get('dataAdmissao').value.includes('/')) {
+      // se a data incluir uma / quer dizer q nao ta no formato date, entao tem q formatar
+      const dia = this.form.get('dataAdmissao').value.split("/")[0];
+      const mes = this.form.get('dataAdmissao').value.split("/")[1];
+      const ano = this.form.get('dataAdmissao').value.split("/")[2];
+      this.form.get('dataAdmissao').setValue(ano + '-' + ("0" + mes).slice(-2) + '-' + ("0" + dia).slice(-2))
+    }
 
     this.corretoresService.addCorretor(this.form.value).then(
       (response) => {

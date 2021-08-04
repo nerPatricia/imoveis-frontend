@@ -22,11 +22,11 @@ export class EditarVendaDialogComponent implements OnInit {
     console.log(data);
 
     this.form = this.fb.group({
-        codImovel: new FormControl(data.venda?.codImovel || '', [Validators.required]),
-        valorReal: new FormControl(data.venda?.valorReal || '', [Validators.required]),
-        nomeComprador: new FormControl(data.venda?.nomeComprador || '', [Validators.required]),
-        creciCorretor: new FormControl(data.venda?.creciCorretor || '', [Validators.required]),
-        dataVenda: new FormControl(data.venda?.dataVenda || '', [Validators.required])
+      codigoImovel: new FormControl(data.venda?.codigoImovel || '', [Validators.required]),
+      valor: new FormControl(data.venda?.valor || '', [Validators.required]),
+      nomeComprador: new FormControl(data.venda?.nomeComprador || '', [Validators.required]),
+      creciCorretor: new FormControl(data.venda?.creciCorretor || '', [Validators.required]),
+      dataVenda: new FormControl(data.venda?.dataVenda || '', [Validators.required])
     });
     this.titulo = data.venda  ? "EDITAR VENDA" : "CADASTRAR VENDAS";
     this.edit = data.venda  ? true : false;

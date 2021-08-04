@@ -13,8 +13,8 @@
         <div class="col-6">
             <mat-form-field appearance="outline">
                 <mat-label>Codigo Imovel</mat-label>
-                <input matInput type="text" formControlName="codImovel" readonly={{edit}}/>
-                <mat-error>{{ getErrorMessage("codImovel") }}</mat-error>
+                <input matInput type="text" formControlName="codigoImovel" readonly={{edit}} />
+                <mat-error>{{ getErrorMessage("codigoImovel") }}</mat-error>
             </mat-form-field>
         </div>
 
@@ -22,8 +22,8 @@
         <div class="col-6">
             <mat-form-field appearance="outline">
                 <mat-label>Valor Real</mat-label>
-                <input matInput type="text" formControlName="valorReal" prefix="R$" mask="separator.2"required />
-                <mat-error>{{ getErrorMessage("valorReal") }}</mat-error>
+                <input matInput type="text" formControlName="valor" prefix="R$" mask="separator.2" required />
+                <mat-error>{{ getErrorMessage("valor") }}</mat-error>
             </mat-form-field>
         </div>
 
@@ -49,7 +49,8 @@
         <div class="col-6">
             <mat-form-field appearance="outline">
                 <mat-label>Data Venda</mat-label>
-                <input matInput type="text" formControlName="dataVenda" placeholder="dd/mm/yyyy" mask="00/00/0000" required />
+                <input matInput type="text" formControlName="dataVenda" placeholder="dd/mm/yyyy" mask="00/00/0000"
+                    required />
                 <mat-error>{{ getErrorMessage("dataVenda") }}</mat-error>
             </mat-form-field>
         </div>

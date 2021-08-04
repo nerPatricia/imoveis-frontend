@@ -1,7 +1,7 @@
 export interface IVenda {
     codVenda: string,
-    codImovel: string,
-    valorReal: number,
+    codigoImovel: string,
+    valor: number,
     nomeComprador: string,
     creciCorretor: string,
     dataVenda: Date,

@@ -51,8 +51,8 @@
     <div class="col-6">
       <mat-form-field appearance="outline">
         <mat-label>Data de Cadastro</mat-label>
-        <input matInput type="text" formControlName="dataDeCadastro" [dropSpecialCharacters]="false" mask="00/00/0000"
-          required />
+        <input matInput type="text" formControlName="dataDeCadastro" placeholder="dd/mm/yyyy"
+          [dropSpecialCharacters]="false" mask="00/00/0000" required />
         <mat-error>{{ getErrorMessage("dataDeCadastro") }}</mat-error>
       </mat-form-field>
     </div>
