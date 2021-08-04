@@ -6,7 +6,7 @@ export const vendasList: IVenda[] = [
         codigoImovel: "1101",
         valor: 1500.50,
         nomeComprador: "Comprador1",
-        nomeCorretor: "Corretor1",
+        creciCorretor: "Corretor1",
         dataVenda: new Date('2019-01-16'),
     },
     {
@@ -14,7 +14,7 @@ export const vendasList: IVenda[] = [
         codigoImovel: "1102",
         valor: 1000,
         nomeComprador: "Comprador1",
-        nomeCorretor: "Corretor2",
+        creciCorretor: "Corretor2",
         dataVenda: new Date('2019-01-16'),
     },
     {
@@ -22,7 +22,7 @@ export const vendasList: IVenda[] = [
         codigoImovel: "1103",
         valor: 3000.75,
         nomeComprador: "Comprador2",
-        nomeCorretor: "Corretor1",
+        creciCorretor: "Corretor1",
         dataVenda: new Date('2019-01-16'),
     }
 ]
