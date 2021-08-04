@@ -94,9 +94,9 @@ export class EditarImovelDialogComponent {
   formataForm() {
     this.form.removeControl("imagemPath");
     this.form.get('imagem').setValue(this.img);
-    const dia  = this.form.get('dataDeCadastro').value.split("/")[0];
-    const mes  = this.form.get('dataDeCadastro').value.split("/")[1];
-    const ano  = this.form.get('dataDeCadastro').value.split("/")[2];
+    const dia = this.form.get('dataDeCadastro').value.split("/")[0];
+    const mes = this.form.get('dataDeCadastro').value.split("/")[1];
+    const ano = this.form.get('dataDeCadastro').value.split("/")[2];
 
     this.form.get('dataDeCadastro').setValue(ano + '-' + ("0" + mes).slice(-2) + '-' + ("0" + dia).slice(-2));
   }
