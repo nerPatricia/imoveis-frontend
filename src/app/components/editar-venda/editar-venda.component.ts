@@ -68,7 +68,9 @@ export class EditarVendaDialogComponent implements OnInit {
     } else {  
       this.vendasService.addVenda(this.form.value).then(
         (response) => {
-          console.log(response);
+          Swal.fire('Venda atualizada com sucesso', '', 'success').then(() =>
+              window.location.reload()
+          );
         },
         (error) => {
           console.log(error);
