@@ -14,7 +14,7 @@ import { CorretoresEndpointService } from 'src/app/service/corretores-endpoint.s
   styleUrls: ['./pagamentos.component.less']
 })
 export class PagamentosComponent implements OnInit, AfterViewInit {
-  meses = ["janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+  meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
   corretor: IEmployee;
   pagamento = [];
   listaCorretor = []; //array utilizado para popular as opções do select de corretor
@@ -45,7 +45,6 @@ export class PagamentosComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     console.log(this.listaCorretor);
-    //console.log(this.pagamentosCorretores);
   }
 
   getTypesSearch(event) {

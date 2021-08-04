@@ -16,8 +16,6 @@
                         <mat-cell *matCellDef="let row">
                             <div class="options" mat-colunm>
                                 <i class="fas fa-edit" (click)="corretorModal('ALTERAR', row)"></i>
-                                <br>
-                                <i class="fas fa-trash-alt" (click)="deletarCorretor(row)"></i>
                             </div>
                         </mat-cell>
                     </ng-container>
@@ -70,8 +68,6 @@
                         <mat-cell *matCellDef="let row">
                             <div class="options" mat-colunm>
                                 <i class="fas fa-edit" (click)="corretorModal(row)"></i>
-                                <br>
-                                <i class="fas fa-trash-alt" (click)="deletarCorretor(row)"></i>
                             </div>
                         </mat-cell>
                     </ng-container>
