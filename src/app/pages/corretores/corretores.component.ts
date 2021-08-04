@@ -38,10 +38,11 @@ export class CorretoresComponent implements OnInit, AfterViewInit {
     this.corretores.paginator = this.paginator;
   }
 
-  corretorModal(corretor?) {
+  corretorModal(modalTitle, corretor?) {
     this.dialog.open(EditarCorretorDialogComponent, {
       data: {
-        corretor: corretor || null
+        corretor: corretor || null,
+        modalTitle: modalTitle || null
       },
       width: '700px',
       backdropClass: 'modal-menor'

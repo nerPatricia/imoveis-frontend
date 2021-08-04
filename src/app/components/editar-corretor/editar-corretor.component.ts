@@ -19,6 +19,14 @@ export class EditarCorretorDialogComponent implements OnInit {
     private fb: FormBuilder,
   ) { 
     console.log(data);
+
+    if (this.data.corretor) {
+      const date = new Date(this.data.corretor.dataAdmissao);
+      const ano = date.getUTCFullYear();
+      const mes = date.getUTCMonth() + 1;
+      const dia = date.getUTCDate();
+      this.data.corretor.dataAdmissao = (dia < 10 ? '0'+dia : dia) + '/' + (mes < 10 ? '0'+mes : mes) + '/' + ano;
+    }
     
     this.form = this.fb.group({
       creci: new FormControl(data.corretor?.creci || '', [Validators.required]),

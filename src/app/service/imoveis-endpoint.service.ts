@@ -40,12 +40,7 @@ export class ImoveisEndpointService {
   }
 
   removeImoveisSelecionados(codigos) {
-    const url = this.backendUrl + '/imovel/deletar';
+    const url = this.backendUrl + '/imovel/deletarLista';
     return this.client.post(url, codigos).toPromise();
-  }
-
-  getAllImoveisUrbanos() {
-    const url = this.backendUrl + '/imovel/listar?local=urbano'
-    return this.client.get(url).toPromise();
   }
 }
