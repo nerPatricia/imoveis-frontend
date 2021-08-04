@@ -29,12 +29,6 @@ const routes: Routes = [
       }
     ],
   },
-  // {
-  //   path: 'detail/:tipo/:id',
-  //   component: GameDetailComponent,
-  //   canActivate: [NonAuthGuard],
-  // },
-  // { path: '**', redirectTo: '' },
 ];
 
 @NgModule({

@@ -50,6 +50,10 @@ export class EditarImovelDialogComponent {
         Validators.required,
       ]),
     });
+
+    if (this.data.imovel) {
+      this.form.get('codigo').disable();
+    }
   }
 
   getErrorMessage(field) {
@@ -68,23 +72,35 @@ export class EditarImovelDialogComponent {
   atualizar() {
     this.formataForm();
    
-    this.fileService.saveImage(this.img).then(
-      (response: any) => {
-        console.log("SALVOU IMAGEM");
-        console.log(response);
-        this.form.get('imagem').setValue(response.image.url);
-        this.imoveisService.addImovel(this.form.value).then(
-          (response) => {
-            Swal.fire('Imovel cadastrado com sucesso', '', 'success').then(() => window.location.reload());
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
-      }, error => {
-        console.log(error);
-      }
-    );
+    if (this.data) {
+      console.log(this.data);
+      this.imoveisService.updateImovelById(this.form.value, this.data.imovel._id).then(
+        (response) => {
+          Swal.fire('Imovel atualizado com sucesso', '', 'success').then(() => window.location.reload());
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    } else {
+      this.fileService.saveImage(this.img).then(
+        (response: any) => {
+          console.log("SALVOU IMAGEM");
+          console.log(response);
+          this.form.get('imagem').setValue(response.image.url);
+          this.imoveisService.addImovel(this.form.value).then(
+            (response) => {
+              Swal.fire('Imovel cadastrado com sucesso', '', 'success').then(() => window.location.reload());
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
+        }, error => {
+          console.log(error);
+        }
+      );
+    }
   }
 
   imgNull() {
@@ -94,11 +110,14 @@ export class EditarImovelDialogComponent {
   formataForm() {
     this.form.removeControl("imagemPath");
     this.form.get('imagem').setValue(this.img);
-    const dia = this.form.get('dataDeCadastro').value.split("/")[0];
-    const mes = this.form.get('dataDeCadastro').value.split("/")[1];
-    const ano = this.form.get('dataDeCadastro').value.split("/")[2];
 
-    this.form.get('dataDeCadastro').setValue(ano + '-' + ("0" + mes).slice(-2) + '-' + ("0" + dia).slice(-2));
+    if (this.form.get('dataDeCadastro').value.includes('/')) {
+      // se a data incluir uma / quer dizer q nao ta no formato date, entao tem q formatar
+      const dia = this.form.get('dataDeCadastro').value.split("/")[0];
+      const mes = this.form.get('dataDeCadastro').value.split("/")[1];
+      const ano = this.form.get('dataDeCadastro').value.split("/")[2];
+      this.form.get('dataDeCadastro').setValue(ano + '-' + ("0" + mes).slice(-2) + '-' + ("0" + dia).slice(-2));
+    }
   }
 
   onSelectFile(event) {

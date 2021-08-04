@@ -27,6 +27,10 @@ export class EditarCorretorDialogComponent implements OnInit {
       comissao: new FormControl(data.corretor?.comissao || '', [Validators.required]),
       tipo: new FormControl(data.corretor?.tipo || 'Contratado', [Validators.required])
     });
+
+    if (this.data.corretor) {
+      this.form.get('creci').disable();
+    }
   }
 
   ngOnInit(): void {
