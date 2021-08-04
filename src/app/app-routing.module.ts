@@ -29,7 +29,7 @@ const routes: Routes = [
         component: PagamentosComponent
       },
       {
-        path: 'relatorios',
+        path: '',
         component: RelatoriosComponent,
       }
     ],

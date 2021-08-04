@@ -26,66 +26,80 @@
             </mat-form-field>
         </div>
         <div class="col-2">
-            <button mat-raised-button class="btn" (click)="chageMonth()">
-              <i class="fa fa-search"></i>&nbsp;Pesquisar
+            <button mat-raised-button class="btn" (click)="pesquisar()">
+                <i class="fa fa-search"></i>&nbsp;Pesquisar
             </button>
         </div>
     </div>
     <div class="col-3">
         <h1> RELATÓRIO GERAL </h1>
     </div>
-    <mat-list role="list" *ngIf="vendasMes.length > 0">
+    <mat-list role="list" *ngIf="relatorio">
         <mat-list-item class="item" role="listitem">
-            <p>1. Faturamento total da imobiliária: R$ {{ totalFat }}</p>
+            <p>1. Faturamento total da imobiliária: {{ relatorio.faturamentoTotal | currency: 'BRL': 'R$' }}</p>
         </mat-list-item>
-        <mat-list-item class="item" role="listitem">            
-            <p>2. Lucro da imobiliária: {{ totalFat - totalPago}}</p>
+        <mat-list-item class="item" role="listitem">
+            <p>2. Lucro da imobiliária: {{ relatorio.lucro | currency: 'BRL': 'R$' }}</p>
         </mat-list-item>
         <mat-accordion>
-            <mat-expansion-panel hideToggle>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>3. Imoveis Vendidos </mat-panel-title>
+            <mat-expansion-panel hideToggle class="item-accordion">
+                <mat-expansion-panel-header (click)="setVendidosTog()">
+                    <mat-panel-title>3. Imoveis Vendidos:
+                        {{ !vendidosTog ? '[Clique para expandir]' : '[Clique para recolher]' }} </mat-panel-title>
                 </mat-expansion-panel-header>
                 <mat-list dense>
-                    <mat-list-item role="listitem" *ngFor="let venda of vendasMes">            
-                        {{ venda.codImovel }}
+                    <mat-list-item role="listitem" *ngFor="let imovel of relatorio.imoveisVendidos">
+                        {{ 'Código: ' + imovel.codigo }}
                     </mat-list-item>
                 </mat-list>
             </mat-expansion-panel>
         </mat-accordion>
-        <mat-list-item class="item" role="listitem">
-            <p>4. Imóveis encalhados: R$ 222.22</p>
-        </mat-list-item>
         <mat-accordion>
+            <mat-expansion-panel hideToggle class="item-accordion">
+                <mat-expansion-panel-header (click)="setVendidosTog()">
+                    <mat-panel-title>4. Imóveis encalhados:
+                        {{ !encalhadosTog ? '[Clique para expandir]' : '[Clique para recolher]' }}</mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-list dense>
+                    <mat-list-item role="listitem" *ngFor="let imovel of relatorio.imoveisEncalhados">
+                        {{ 'Código: ' + imovel.codigo }}
+                    </mat-list-item>
+                </mat-list>
+            </mat-expansion-panel>
+        </mat-accordion>
+        <!-- <mat-accordion>
             <mat-expansion-panel hideToggle>
                 <mat-expansion-panel-header>
                     <mat-panel-title>5. Faturamento por corretor</mat-panel-title>
                 </mat-expansion-panel-header>
                 <mat-list dense>
-                    <mat-list-item role="listitem" *ngFor="let pag of pagamentosMes">            
+                    <mat-list-item role="listitem" *ngFor="let pag of pagamentosMes">
                         <p *ngIf="pag.faturamento > 0">
                             {{ pag.nomeCorretor }} - CRECI: {{ pag.creci }} (valor faturado: {{ pag.faturamento }})
                         </p>
                     </mat-list-item>
                 </mat-list>
             </mat-expansion-panel>
-        </mat-accordion>
-        <mat-accordion>
+        </mat-accordion> -->
+        <!-- <mat-accordion>
             <mat-expansion-panel hideToggle>
                 <mat-expansion-panel-header>
                     <mat-panel-title>6. Valor pago aos corretores</mat-panel-title>
                 </mat-expansion-panel-header>
                 <mat-list dense>
-                    <mat-list-item role="listitem" *ngFor="let pag of pagamentosMes">            
+                    <mat-list-item role="listitem" *ngFor="let pag of pagamentosMes">
                         <p *ngIf="pag.pagamento > 0">
-                            {{ pag.nomeCorretor }} - CRECI: {{ pag.creci }} (valor ganho: {{ pag.pagamento + pag.salario }})
+                            {{ pag.nomeCorretor }} - CRECI: {{ pag.creci }} (valor ganho:
+                            {{ pag.pagamento + pag.salario }})
                         </p>
                     </mat-list-item>
                 </mat-list>
             </mat-expansion-panel>
-        </mat-accordion>  
+        </mat-accordion> -->
         <mat-list-item class="item" role="listitem">
-            <p>7. corretordo mês: {{ funcionarioMes.nomeCorretor}} - CRECI: {{ funcionarioMes.creci }}</p>
-        </mat-list-item>     
+            <p>7. corretordo do mês: {{ relatorio.corretorMes.codigo || ''}} -
+                {{ relatorio.corretorMes.valor | currency: 'BRL': 'R$' }}</p>
+        </mat-list-item>
     </mat-list>
+    <p class="sem-cadastro" *ngIf="!relatorio">Aplique os filtros para consultar.</p>
 </div>
