@@ -1,0 +1,91 @@
+<div class="main-body elevation-1">
+    <div class="row">
+        <div class="col-6">
+            <mat-form-field appearance="fill">
+                <mat-label>Mês</mat-label>
+                <mat-select [(value)]="mes">
+                    <mat-option value="1">Janeiro</mat-option>
+                    <mat-option value="2">Fevereiro</mat-option>
+                    <mat-option value="3">Março</mat-option>
+                    <mat-option value="4">Abril</mat-option>
+                    <mat-option value="5">Maio</mat-option>
+                    <mat-option value="6">Junho</mat-option>
+                    <mat-option value="7">Julho</mat-option>
+                    <mat-option value="8">Agosto</mat-option>
+                    <mat-option value="9">Setembro</mat-option>
+                    <mat-option value="10">Outubro</mat-option>
+                    <mat-option value="11">Novembro</mat-option>
+                    <mat-option value="12">Dezembro</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-3">
+            <mat-form-field appearance="fill">
+                <mat-label>Ano</mat-label>
+                <input matInput type="text" mask="0000" [(ngModel)]="ano">
+            </mat-form-field>
+        </div>
+        <div class="col-2">
+            <button mat-raised-button class="btn" (click)="chageMonth()">
+              <i class="fa fa-search"></i>&nbsp;Pesquisar
+            </button>
+        </div>
+    </div>
+    <div class="col-3">
+        <h1> RELATÓRIO GERAL </h1>
+    </div>
+    <mat-list role="list" *ngIf="vendasMes.length > 0">
+        <mat-list-item class="item" role="listitem">
+            <p>1. Faturamento total da imobiliária: R$ {{ totalFat }}</p>
+        </mat-list-item>
+        <mat-list-item class="item" role="listitem">            
+            <p>2. Lucro da imobiliária: {{ totalFat - totalPago}}</p>
+        </mat-list-item>
+        <mat-accordion>
+            <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>3. Imoveis Vendidos </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-list dense>
+                    <mat-list-item role="listitem" *ngFor="let venda of vendasMes">            
+                        {{ venda.codImovel }}
+                    </mat-list-item>
+                </mat-list>
+            </mat-expansion-panel>
+        </mat-accordion>
+        <mat-list-item class="item" role="listitem">
+            <p>4. Imóveis encalhados: R$ 222.22</p>
+        </mat-list-item>
+        <mat-accordion>
+            <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>5. Faturamento por corretor</mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-list dense>
+                    <mat-list-item role="listitem" *ngFor="let pag of pagamentosMes">            
+                        <p *ngIf="pag.faturamento > 0">
+                            {{ pag.nomeCorretor }} - CRECI: {{ pag.creci }} (valor faturado: {{ pag.faturamento }})
+                        </p>
+                    </mat-list-item>
+                </mat-list>
+            </mat-expansion-panel>
+        </mat-accordion>
+        <mat-accordion>
+            <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>6. Valor pago aos corretores</mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-list dense>
+                    <mat-list-item role="listitem" *ngFor="let pag of pagamentosMes">            
+                        <p *ngIf="pag.pagamento > 0">
+                            {{ pag.nomeCorretor }} - CRECI: {{ pag.creci }} (valor ganho: {{ pag.pagamento + pag.salario }})
+                        </p>
+                    </mat-list-item>
+                </mat-list>
+            </mat-expansion-panel>
+        </mat-accordion>  
+        <mat-list-item class="item" role="listitem">
+            <p>7. corretordo mês: {{ funcionarioMes.nomeCorretor}} - CRECI: {{ funcionarioMes.creci }}</p>
+        </mat-list-item>     
+    </mat-list>
+</div>
