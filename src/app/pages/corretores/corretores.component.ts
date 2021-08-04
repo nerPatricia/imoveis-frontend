@@ -19,26 +19,19 @@ export class CorretoresComponent implements OnInit, AfterViewInit {
   constructor(
     private corretoresService: CorretoresEndpointService,
     public dialog: MatDialog
-  ) {
-    this.preencheLista();
-  }
+  ) {}
 
   ngOnInit(): void {
-    console.log(this.corretores);
+    this.preencheLista("Contratado");
 
-    // primeiro, pense que as informações vão vir do backend
-    this.corretoresService.getAllCorretoresByType('todos').then(
-      (response: any) => {
-        // aqui dentro vc tem que preencher os MatTable e também preencher o seu array
-        // com os corretores no obtions
-        // POR EXEMPLO:
-        //this.corretores_ct = new MatTableDataSource<IEmployee>(response);
-        this.corretores = response;
-        // esse segundo que vc vai usar no options
-      }, error => {
-        console.log(error);
-      }
-    )
+    // ISSO AQUI PEGA TODOS OS CORRETORES
+    // this.corretoresService.getAllCorretoresByType('todos').then(
+    //   (response: any) => {
+    //     this.corretores = new MatTableDataSource<IEmployee>(response);
+    //   }, error => {
+    //     console.log(error);
+    //   }
+    // )
   }
 
   ngAfterViewInit() {
@@ -46,7 +39,6 @@ export class CorretoresComponent implements OnInit, AfterViewInit {
   }
 
   corretorModal(corretor?) {
-    console.log(corretor);
     this.dialog.open(EditarCorretorDialogComponent, {
       data: {
         corretor: corretor || null
@@ -79,10 +71,6 @@ export class CorretoresComponent implements OnInit, AfterViewInit {
       this.preencheLista("Contratado");
     else
       this.preencheLista("Comissionado");
-    // if(this.tipoCorretor == "Contratado")
-    //   this.tipoCorretor = "Comissionado";
-    // else
-    //   this.tipoCorretor = "Contratado";
   }
 
   preencheLista(tipoCorretor = "Contratado") {
