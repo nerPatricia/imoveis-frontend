@@ -94,9 +94,6 @@ export class ImoveisComponent {
       cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
-        // se precisar dar um reload na tela depois, usar window.location.reload()
-        console.log(imovel);
-        // TODO: NAO TA FUNCIONANDO
         this.imoveisService
           .removeImoveisById(imovel.codigo)
           .then((response) => {
