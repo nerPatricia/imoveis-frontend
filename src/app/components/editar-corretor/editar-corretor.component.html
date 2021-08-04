@@ -1,5 +1,5 @@
 <h1 mat-dialog-title class="titulo-modal">
-  EDITAR CORRETOR
+  {{ data.modalTitle }} CORRETOR
   <i (click)="closeModal()" class="material-icons btn-fechar">close</i>
   <span id="fechar" (click)="closeModal()">FECHAR</span>
 </h1>
@@ -39,10 +39,11 @@
         <input matInput type="number" formControlName="comissao" required />
       </mat-form-field>
     </div>
-    <div class="col-6">
+    <div class="col-6" *ngIf="form.get('tipo').value == 'Contratado'">
       <mat-form-field appearance="outline">
         <mat-label>Data de Admissão</mat-label>
-        <input matInput type="text" formControlName="dataAdmissao" placeholder="dd/mm/yyyy" mask="00/00/0000" required />
+        <input matInput type="text" formControlName="dataAdmissao" placeholder="dd/mm/yyyy"
+          [dropSpecialCharacters]="false" mask="00/00/0000" required />
       </mat-form-field>
     </div>
   </div>

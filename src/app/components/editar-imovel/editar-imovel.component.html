@@ -1,5 +1,5 @@
 <h1 mat-dialog-title class="titulo-modal">
-  EDITAR IMÓVEL
+  {{ data.modalTitle }} IMÓVEL
   <i (click)="closeModal()" class="material-icons btn-fechar">close</i>
   <span id="fechar" (click)="closeModal()">FECHAR</span>
 </h1>
@@ -44,14 +44,15 @@
     <div class="col-6">
       <mat-form-field appearance="outline">
         <mat-label>Preço Solicitado</mat-label>
-        <input matInput type="text" formControlName="precoSolicitado" mask="0" required />
+        <input matInput type="text" formControlName="precoSolicitado" required />
         <mat-error>{{ getErrorMessage("precoSolicitado") }}</mat-error>
       </mat-form-field>
     </div>
     <div class="col-6">
       <mat-form-field appearance="outline">
         <mat-label>Data de Cadastro</mat-label>
-        <input matInput type="text" formControlName="dataDeCadastro" mask="00/00/0000" required />
+        <input matInput type="text" formControlName="dataDeCadastro" placeholder="dd/mm/yyyy"
+          [dropSpecialCharacters]="false" mask="00/00/0000" required />
         <mat-error>{{ getErrorMessage("dataDeCadastro") }}</mat-error>
       </mat-form-field>
     </div>
@@ -59,7 +60,8 @@
     <div class="col-12 inputimg">
       <div class="fileinput fileinput-new text-center" data-provides="fileinput" text-center>
         <div class="fileinput-new thumbnail">
-          <img *ngIf="img" [src]="img" alt="..." />
+          <img *ngIf="img || imgBase64 || form.get('imagem').value" [src]="imgBase64 || form.get('imagem').value"
+            alt="..." />
         </div>
         <div class="fileinput-preview fileinput-exists thumbnail"></div>
         <div>

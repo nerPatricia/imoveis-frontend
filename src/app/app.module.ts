@@ -9,7 +9,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { UserRegisterComponent } from './pages/user-register/user-register.component';
 import '@angular/common/locales/global/pt';
-import { NgxMaskModule } from 'ngx-mask'
+import { NgxMaskModule } from 'ngx-mask';
+import localePt from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(localePt, 'ptBr');
 
 // views
 import { MainComponent } from './views/main/main.component';
@@ -53,9 +57,14 @@ import { PagamentosComponent } from './pages/pagamentos/pagamentos.component';
     ReactiveFormsModule,
     MaterialModule,
     HttpClientModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'pt' } ],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: LOCALE_ID,
+      useValue: 'pt-BR',
+    }
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

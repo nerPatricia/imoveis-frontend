@@ -48,10 +48,14 @@ export class ImoveisEndpointService {
     return this.client.get(url).toPromise();
   }
 
-  removeImoveis(codigos) {
-    console.log(codigos);
+  removeImoveisById(codigo) {
+    const url = this.backendUrl + '/imovel/deletar/' + codigo;
+    return this.client.delete(url).toPromise();
+  }
+
+  removeImoveisSelecionados(codigos) {
     const url = this.backendUrl + '/imovel/deletar';
-    return this.client.delete(url, codigos).toPromise();
+    return this.client.post(url, codigos).toPromise();
   }
 
   getAllImoveisUrbanos() {

@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { VendasEndpointService } from 'src/app/service/vendas-endpoint.service';
@@ -10,7 +11,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class EditarVendaDialogComponent implements OnInit {
   titulo = "";
-  edit = false;
   form: FormGroup;
 
   constructor(
@@ -22,14 +22,16 @@ export class EditarVendaDialogComponent implements OnInit {
     console.log(data);
 
     this.form = this.fb.group({
-        codImovel: new FormControl(data.venda?.codImovel || '', [Validators.required]),
-        valorReal: new FormControl(data.venda?.valorReal || '', [Validators.required]),
-        nomeComprador: new FormControl(data.venda?.nomeComprador || '', [Validators.required]),
-        nomeCorretor: new FormControl(data.venda?.nomeCorretor || '', [Validators.required]),
-        dataVenda: new FormControl(data.venda?.dataVenda || '', [Validators.required])
+      codigoImovel: new FormControl(data.venda?.codigoImovel || '', [Validators.required]),
+      valor: new FormControl(data.venda?.valor || '', [Validators.required]),
+      nomeComprador: new FormControl(data.venda?.nomeComprador || '', [Validators.required]),
+      creciCorretor: new FormControl(data.venda?.creciCorretor || '', [Validators.required]),
+      dataVenda: new FormControl(data.venda?.dataVenda || '', [Validators.required])
     });
+    if (this.data.venda) {
+      this.form.get('codigoImovel').disable();
+    }
     this.titulo = data.venda  ? "EDITAR VENDA" : "CADASTRAR VENDAS";
-    this.edit = data.venda  ? true : false;
   }
 
   getErrorMessage(field) {
@@ -48,19 +50,45 @@ export class EditarVendaDialogComponent implements OnInit {
   }
 
   atualizar() {
-    console.log(this.form.value);
+    this.formataForm();
 
-    this.vendasService.addVenda(this.form.value).then(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    if(this.data.venda){
+      this.vendasService
+        .updateVendaById(this.form.value, this.data.venda._id)
+        .then(
+          (response) => {
+            Swal.fire('Venda atualizada com sucesso', '', 'success').then(() =>
+              window.location.reload()
+            );
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+    } else {  
+      this.vendasService.addVenda(this.form.value).then(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
   }
 
-  cadastrar() {
-    console.log(this.form.value);
+  formataForm() {
+
+    if (this.form.get('dataVenda').value.includes('/')) {
+      // se a data incluir uma / quer dizer q nao ta no formato date, entao tem q formatar
+      const dia = this.form.get('dataVenda').value.split('/')[0];
+      const mes = this.form.get('dataVenda').value.split('/')[1];
+      const ano = this.form.get('dataVenda').value.split('/')[2];
+      this.form
+        .get('dataDeCadastro')
+        .setValue(
+          ano + '-' + ('0' + mes).slice(-2) + '-' + ('0' + dia).slice(-2)
+        );
+    }
   }
 }

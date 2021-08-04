@@ -7,27 +7,27 @@
                     <mat-option *ngFor="let corretor of listaCorretor" [value]="corretor.creci">{{corretor.nome}} - {{corretor.creci}}</mat-option>
                 </mat-select>
             </mat-form-field>
-		</div>
-		<div class="col">
+        </div>
+        <div class="col">
             <mat-form-field appearance="fill">
 				<mat-label>Mês</mat-label>			
                 <mat-select disableRipple  formControlName="mes" required>
                     <mat-option *ngFor="let mes of meses; let i = index;" [value]="i+1">{{mes}}</mat-option>
                 </mat-select>
             </mat-form-field>
-		</div>
+        </div>
         <div class="col">
-			<mat-form-field appearance="fill">
-				<mat-label>ano</mat-label>
+            <mat-form-field appearance="fill">
+                <mat-label>ano</mat-label>
                 <input matInput type="text" placeholder="yyyy" formControlName="ano" mask="0000" required />
-			</mat-form-field>
-		</div>
+            </mat-form-field>
+        </div>
         <div class="col">
             <button mat-raised-button class="btn" (click)="preencheLista()">
               <i class="fa fa-search"></i>&nbsp;Pesquisar
             </button>
         </div>
-	</div>
+    </div>
 
 	 <!-- Tabela de Vendas -->
      <div class="elevation-1 header-color tab">

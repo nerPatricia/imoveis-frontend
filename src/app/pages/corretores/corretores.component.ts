@@ -1,9 +1,9 @@
+import { CorretoresEndpointService } from './../../service/corretores-endpoint.service';
 import { Component, OnInit, ViewChild, AfterViewInit, ViewChildren, QueryList } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { IEmployee } from 'src/app/interfaces/corretores_model';
 import { EditarCorretorDialogComponent } from 'src/app/components/editar-corretor/editar-corretor.component';
 import { MatDialog } from '@angular/material/dialog';
-import { CorretoresEndpointService } from 'src/app/service/corretores-endpoint.service';
 import Swal from 'sweetalert2';
 import { MatPaginator } from '@angular/material/paginator';
 
@@ -19,23 +19,30 @@ export class CorretoresComponent implements OnInit, AfterViewInit {
   constructor(
     private corretoresService: CorretoresEndpointService,
     public dialog: MatDialog
-  ) {
-    this.preencheLista();
-  }
+  ) {}
 
   ngOnInit(): void {
-    console.log(this.corretores);
+    this.preencheLista("Contratado");
+
+    // ISSO AQUI PEGA TODOS OS CORRETORES
+    // this.corretoresService.getAllCorretoresByType('todos').then(
+    //   (response: any) => {
+    //     this.corretores = new MatTableDataSource<IEmployee>(response);
+    //   }, error => {
+    //     console.log(error);
+    //   }
+    // )
   }
 
   ngAfterViewInit() {
     this.corretores.paginator = this.paginator;
   }
 
-  corretorModal(corretor?) {
-    console.log(corretor);
+  corretorModal(modalTitle, corretor?) {
     this.dialog.open(EditarCorretorDialogComponent, {
       data: {
-        corretor: corretor || null
+        corretor: corretor || null,
+        modalTitle: modalTitle || null
       },
       width: '700px',
       backdropClass: 'modal-menor'
