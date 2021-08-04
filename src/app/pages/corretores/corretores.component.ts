@@ -65,10 +65,6 @@ export class CorretoresComponent implements OnInit, AfterViewInit {
       this.preencheLista("Contratado");
     else
       this.preencheLista("Comissionado");
-    // if(this.tipoCorretor == "Contratado")
-    //   this.tipoCorretor = "Comissionado";
-    // else
-    //   this.tipoCorretor = "Contratado";
   }
 
   preencheLista(tipoCorretor = "Contratado") {
