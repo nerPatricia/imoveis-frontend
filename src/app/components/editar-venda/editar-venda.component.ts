@@ -19,15 +19,9 @@ export class EditarVendaDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<EditarVendaDialogComponent>,
     private fb: FormBuilder,
   ) { 
-    console.log(data);
-
     if (this.data.venda) {
-      const date = new Date(this.data.venda.dataVenda);
-      console.log("aaa ", date);
-      const ano = date.getUTCFullYear();
-      const mes = date.getUTCMonth() + 1;
-      const dia = date.getUTCDate();
-      this.data.venda.dataVenda = (dia < 10 ? '0'+dia : dia) + '/' + (mes < 10 ? '0'+mes : mes) + '/' + ano;
+      const obj = this.montaData(this.data.venda.dataVenda);
+      this.data.venda.dataVenda = (obj.mes < 10 ? '0'+obj.mes : obj.mes) + '/' + (obj.dia < 10 ? '0'+obj.dia : obj.dia) + '/' + obj.ano;
     }
 
     this.form = this.fb.group({
@@ -37,10 +31,22 @@ export class EditarVendaDialogComponent implements OnInit {
       creciCorretor: new FormControl(data.venda?.creciCorretor || '', [Validators.required]),
       dataVenda: new FormControl(data.venda?.dataVenda || '', [Validators.required])
     });
+
+    const obj = this.montaData(this.form.get('dataVenda').value);
+    this.form.get('dataVenda').setValue('/' + (obj.dia < 10 ? '0'+obj.dia : obj.dia) + '/' + (obj.mes < 10 ? '0'+obj.mes : obj.mes) + '/' + obj.ano);
+
     if (this.data.venda) {
       this.form.get('codigoImovel').disable();
     }
     this.titulo = data.venda  ? "EDITAR VENDA" : "CADASTRAR VENDAS";
+  }
+
+  montaData(dataOriginal) {
+    const date = new Date(dataOriginal);
+    const ano = date.getUTCFullYear();
+    const mes = date.getUTCMonth() + 1;
+    const dia = date.getUTCDate();
+    return {ano, mes, dia};
   }
 
   getErrorMessage(field) {
