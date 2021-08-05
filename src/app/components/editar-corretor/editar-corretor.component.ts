@@ -87,10 +87,11 @@ export class EditarCorretorDialogComponent implements OnInit {
       const dia = this.form.get('dataAdmissao').value.split('/')[0];
       const mes = this.form.get('dataAdmissao').value.split('/')[1];
       const ano = this.form.get('dataAdmissao').value.split('/')[2];
+      console.log(dia);
       this.form
         .get('dataAdmissao')
         .setValue(
-          ano + '-' + ('0' + mes).slice(-2) + '-' + ('0' + dia).slice(-2)
+          new Date(ano +'-' +mes +'-' +dia)
         );
     }
   }
