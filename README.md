@@ -3,13 +3,20 @@
 
 FRONTEND
 Elaborado por:
+
 Álison Mesquita Maciel - 2018011367
+
 Leonardo Vieira Ferreira - 2018009799	
+
 Geovany Carlos Mendes - 2018013746
+
 Patricia Costa da Silva - 35185
+
 Thiago Silva Pereira - 2018008209
 
+
 ==============================================
+
 Passos para instalação e execução do frontend:
 
 Para instalar os pacotes neccessários:
