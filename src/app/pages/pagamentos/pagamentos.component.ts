@@ -1,9 +1,6 @@
-import { Component, OnInit, ViewChild, AfterViewInit, ViewChildren, QueryList, Inject } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { IPagamentoEmployee } from 'src/app/interfaces/pagamentos_model';
 import { SalariosEndpointService } from 'src/app/service/salarios-endpoint.service';
 import { IEmployee } from 'src/app/interfaces/corretores_model';
 import { CorretoresEndpointService } from 'src/app/service/corretores-endpoint.service';
@@ -13,10 +10,10 @@ import { CorretoresEndpointService } from 'src/app/service/corretores-endpoint.s
   templateUrl: './pagamentos.component.html',
   styleUrls: ['./pagamentos.component.less']
 })
-export class PagamentosComponent implements OnInit, AfterViewInit {
+export class PagamentosComponent implements OnInit {
   meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
   corretor: IEmployee;
-  pagamento = [];
+  pagamento;
   listaCorretor = []; //array utilizado para popular as opções do select de corretor
   form: FormGroup;
 
@@ -43,15 +40,6 @@ export class PagamentosComponent implements OnInit, AfterViewInit {
     )
   }
 
-  ngAfterViewInit() {
-    console.log(this.listaCorretor);
-  }
-
-  getTypesSearch(event) {
-    // TODO: quando seleciona o tipo, exibir apenas imoveis do tipo selecionado
-    console.log("Selecionou um corretor: ", event);
-  }
-
   getSelectedCorretor(event){
     this.listaCorretor.forEach((corretor) => {
       if(event.value == corretor.creci){
@@ -62,11 +50,10 @@ export class PagamentosComponent implements OnInit, AfterViewInit {
   }
 
   preencheLista() {
-    console.log(this.form.value)
     this.salariosService.getSalario(this.form.value).then(
       (response: any) => {
-        this.pagamento.push({salario: response, corretor: this.corretor});
-        console.log(this.pagamento)
+        this.pagamento = [{ corretor: this.corretor, salarioTotal: response.total }];
+        console.log(this.pagamento);
       }, error => {
         console.log(error); 
       }

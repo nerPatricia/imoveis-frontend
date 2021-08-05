@@ -1,17 +1,19 @@
 <div class="main-body elevation-1">
-	<div class="row" [formGroup]="form">
-		<div class="col">
-			<mat-form-field appearance="fill">
-				<mat-label>Selecione o corretor</mat-label>			
-                <mat-select disableRipple  formControlName="creciCorretor" (selectionChange)="getSelectedCorretor($event)"required>
-                    <mat-option *ngFor="let corretor of listaCorretor" [value]="corretor.creci">{{corretor.nome}} - {{corretor.creci}}</mat-option>
+    <div class="row" [formGroup]="form">
+        <div class="col">
+            <mat-form-field appearance="fill">
+                <mat-label>Selecione o corretor</mat-label>
+                <mat-select disableRipple formControlName="creciCorretor"
+                    (selectionChange)="getSelectedCorretor($event)" required>
+                    <mat-option *ngFor="let corretor of listaCorretor" [value]="corretor.creci">{{corretor.nome}} -
+                        {{corretor.creci}}</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
         <div class="col">
             <mat-form-field appearance="fill">
-				<mat-label>Mês</mat-label>			
-                <mat-select disableRipple  formControlName="mes" required>
+                <mat-label>Mês</mat-label>
+                <mat-select disableRipple formControlName="mes" required>
                     <mat-option *ngFor="let mes of meses; let i = index;" [value]="i+1">{{mes}}</mat-option>
                 </mat-select>
             </mat-form-field>
@@ -24,13 +26,13 @@
         </div>
         <div class="col">
             <button mat-raised-button class="btn" (click)="preencheLista()">
-              <i class="fa fa-search"></i>&nbsp;Pesquisar
+                <i class="fa fa-search"></i>&nbsp;Pesquisar
             </button>
         </div>
     </div>
 
-	 <!-- Tabela de Vendas -->
-     <div class="elevation-1 header-color tab">
+    <!-- Tabela de Vendas -->
+    <div class="elevation-1 header-color tab">
         <mat-table [dataSource]="pagamento">
             <!-- :codigo da venda -->
             <ng-container matColumnDef="creci">
@@ -41,31 +43,33 @@
             <!-- :codigo do imovel -->
             <ng-container matColumnDef="nomeCorretor">
                 <mat-header-cell *matHeaderCellDef> Nome do Corretor </mat-header-cell>
-                <mat-cell *matCellDef="let pag"> {{ pag.corretor.nome}} </mat-cell>
+                <mat-cell *matCellDef="let pag"> {{ pag.corretor.nome }} </mat-cell>
             </ng-container>
 
             <!-- :valor real -->
             <ng-container matColumnDef="tipoCorretor">
                 <mat-header-cell *matHeaderCellDef> Tipo do Corretor </mat-header-cell>
-                <mat-cell *matCellDef="let pag"> {{ pag.corretor.tipo}} </mat-cell>
+                <mat-cell *matCellDef="let pag"> {{ pag.corretor.tipo }} </mat-cell>
             </ng-container>
 
             <!-- :valor real -->
             <ng-container matColumnDef="percentComissao">
                 <mat-header-cell *matHeaderCellDef> Comissão (%) </mat-header-cell>
-                <mat-cell *matCellDef="let pag"> {{pag.corretor.comissao}}% </mat-cell>
+                <mat-cell *matCellDef="let pag"> {{ pag.corretor.comissao }}% </mat-cell>
             </ng-container>
 
             <!-- :valor real -->
             <ng-container matColumnDef="salario">
                 <mat-header-cell *matHeaderCellDef> Salario (R$) </mat-header-cell>
-                <mat-cell *matCellDef="let pag"> {{pag.corretor.salario}} </mat-cell>
+                <mat-cell *matCellDef="let pag">
+                    {{ (pag.corretor.salario | currency: 'BRL': 'R$')|| 'Não é aplicado.' }} </mat-cell>
             </ng-container>
 
             <!-- :valor real -->
             <ng-container matColumnDef="ganhoTotal">
                 <mat-header-cell *matHeaderCellDef> ganhoTotal (R$) </mat-header-cell>
-                <mat-cell *matCellDef="let pag"> {{pag.salario.comissao}} </mat-cell>
+                <mat-cell *matCellDef="let pag"> {{ (pag.salarioTotal | currency: 'BRL': 'R$') || 'Não é aplicado' }}
+                </mat-cell>
             </ng-container>
 
             <!-- Headers & rows declarations-->
