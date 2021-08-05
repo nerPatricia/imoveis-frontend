@@ -30,3 +30,5 @@ Com o backend rodando, execute o comando na pasta do projeto:
 ```npm start```
 
 E acesse o endereço http://localhost:4200
+
+Observação: O cadastro de imagens deve ser ffeito em .png
