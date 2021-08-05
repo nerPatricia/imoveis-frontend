@@ -13,6 +13,8 @@ export class RelatoriosComponent {
   ano: string = "";
   vendidosTog = false;
   encalhadosTog = false;
+  faturamentoTog = false;
+  valorTog = false;
 
   constructor(
     public dialog: MatDialog,
@@ -35,5 +37,13 @@ export class RelatoriosComponent {
 
   setEncalhadosTog() {
     this.encalhadosTog = !this.encalhadosTog;
+  }
+
+  setFaturamentoTog() {
+    this.faturamentoTog = !this.faturamentoTog;
+  }
+
+  setValorTog() {
+    this.valorTog = !this.valorTog;
   }
 }

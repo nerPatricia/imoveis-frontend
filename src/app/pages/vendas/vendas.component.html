@@ -14,18 +14,12 @@
             <!-- :actions -->
             <ng-container matColumnDef="actions">
                 <mat-header-cell *matHeaderCellDef> Opções </mat-header-cell>
-                <mat-cell *matCellDef="let row">
+                <mat-cell *matCellDef="let venda">
                     <div class="options" mat-colunm>
-                        <i class="fas fa-edit" (click)="vendaModal(row)"></i> <br />
+                        <i class="fas fa-edit" (click)="vendaModal(venda)"></i> <br />
                     </div>
                 </mat-cell>
             </ng-container>
-
-            <!-- :codigo da venda -->
-            <!-- <ng-container matColumnDef="codVenda">
-                <mat-header-cell *matHeaderCellDef> Cod. Venda </mat-header-cell>
-                <mat-cell *matCellDef="let venda"> {{venda.codVenda}} </mat-cell>
-            </ng-container> -->
 
             <!-- :codigo do imovel -->
             <ng-container matColumnDef="codigoImovel">

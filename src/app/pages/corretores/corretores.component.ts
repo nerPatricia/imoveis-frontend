@@ -22,15 +22,6 @@ export class CorretoresComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.preencheLista("Contratado");
-
-    // ISSO AQUI PEGA TODOS OS CORRETORES
-    // this.corretoresService.getAllCorretoresByType('todos').then(
-    //   (response: any) => {
-    //     this.corretores = new MatTableDataSource<IEmployee>(response);
-    //   }, error => {
-    //     console.log(error);
-    //   }
-    // )
   }
 
   ngAfterViewInit() {

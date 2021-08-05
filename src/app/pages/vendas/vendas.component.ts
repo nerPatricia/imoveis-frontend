@@ -19,12 +19,10 @@ export class VendasComponent implements OnInit, AfterViewInit{
   constructor(
     private vendasService: VendasEndpointService,
     public dialog: MatDialog
-  ){
-    this.preencheLista();
-  }
+  ) {}
 
   ngOnInit(): void {
-    console.log(this.vendas);
+    this.preencheLista();
   }
 
   ngAfterViewInit() {
@@ -32,7 +30,6 @@ export class VendasComponent implements OnInit, AfterViewInit{
   }
 
   vendaModal(venda?) {
-    console.log(venda);
     this.dialog.open(EditarVendaDialogComponent, {
       data: {
         venda: venda || null
