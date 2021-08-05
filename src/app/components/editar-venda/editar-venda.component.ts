@@ -23,6 +23,7 @@ export class EditarVendaDialogComponent implements OnInit {
 
     if (this.data.venda) {
       const date = new Date(this.data.venda.dataVenda);
+      console.log("aaa ", date);
       const ano = date.getUTCFullYear();
       const mes = date.getUTCMonth() + 1;
       const dia = date.getUTCDate();
@@ -60,7 +61,7 @@ export class EditarVendaDialogComponent implements OnInit {
   atualizar() {
     this.formataForm();
 
-    if(this.data.venda){
+    if (this.data.venda) {
       this.vendasService
         .updateVendaById(this.form.value, this.data.venda._id)
         .then(
@@ -88,22 +89,14 @@ export class EditarVendaDialogComponent implements OnInit {
   }
 
   formataForm() {
-    console.log(this.form.get('dataVenda').value.split('/'))
     if (this.form.get('dataVenda').value.includes('/')) {
       // se a data incluir uma / quer dizer q nao ta no formato date, entao tem q formatar
       const dia = this.form.get('dataVenda').value.split('/')[0];
       const mes = this.form.get('dataVenda').value.split('/')[1];
       const ano = this.form.get('dataVenda').value.split('/')[2];
-      console.log(dia)
-      console.log(mes)
-      console.log(ano)
-      console.log(new Date(ano +'-' +mes +'-' +dia))
-      this.form
-      .get('dataVenda')
-      .setValue(
+      this.form.get('dataVenda').setValue(
         new Date(ano +'-' +mes +'-' +dia)
-        );
-      console.log(this.form.get('dataVenda').value)
+      );
     }
   }
 }

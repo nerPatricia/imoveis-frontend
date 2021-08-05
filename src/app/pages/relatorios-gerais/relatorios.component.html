@@ -67,20 +67,18 @@
                 </mat-list>
             </mat-expansion-panel>
         </mat-accordion>
-        <!-- <mat-accordion>
-            <mat-expansion-panel hideToggle>
+        <mat-accordion>
+            <mat-expansion-panel hideToggle class="item-accordion">
                 <mat-expansion-panel-header>
                     <mat-panel-title>5. Faturamento por corretor</mat-panel-title>
                 </mat-expansion-panel-header>
                 <mat-list dense>
-                    <mat-list-item role="listitem" *ngFor="let pag of pagamentosMes">
-                        <p *ngIf="pag.faturamento > 0">
-                            {{ pag.nomeCorretor }} - CRECI: {{ pag.creci }} (valor faturado: {{ pag.faturamento }})
-                        </p>
+                    <mat-list-item role="listitem" *ngFor="let corretor of relatorio.faturamentoCorretor">
+                        <!-- CRECI: {{ pag.creci }} - valor faturado: {{ pag.faturamento }} -->
                     </mat-list-item>
                 </mat-list>
             </mat-expansion-panel>
-        </mat-accordion> -->
+        </mat-accordion>
         <!-- <mat-accordion>
             <mat-expansion-panel hideToggle>
                 <mat-expansion-panel-header>
@@ -97,7 +95,7 @@
             </mat-expansion-panel>
         </mat-accordion> -->
         <mat-list-item class="item" role="listitem">
-            <p>7. corretordo do mês: {{ relatorio.corretorMes.codigo || ''}} -
+            <p>7. corretordo do mês: CRECI: {{ relatorio.corretorMes.codigo || ''}} -
                 {{ relatorio.corretorMes.valor | currency: 'BRL': 'R$' }}</p>
         </mat-list-item>
     </mat-list>

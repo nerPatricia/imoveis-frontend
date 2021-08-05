@@ -114,6 +114,7 @@ export class EditarImovelDialogComponent {
           }
         );
     } else {
+      console.log(this.form.value);
       this.fileService.saveImage(this.img).then(
         (response: any) => {
           console.log('SALVOU IMAGEM');
