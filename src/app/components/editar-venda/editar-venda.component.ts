@@ -57,8 +57,7 @@ export class EditarVendaDialogComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   closeModal(): void {
     this.dialogRef.close({ fechouModal: true });
