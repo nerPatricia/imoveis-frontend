@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SalariosEndpointService } from 'src/app/service/salarios-endpoint.service';
 import { IEmployee } from 'src/app/interfaces/corretores_model';
 import { CorretoresEndpointService } from 'src/app/service/corretores-endpoint.service';
@@ -14,7 +14,7 @@ export class PagamentosComponent implements OnInit {
   meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
   corretor: IEmployee;
   pagamento;
-  listaCorretor = []; //array utilizado para popular as opções do select de corretor
+  listaCorretor = [];
   form: FormGroup;
 
   constructor(
@@ -52,7 +52,7 @@ export class PagamentosComponent implements OnInit {
   preencheLista() {
     this.salariosService.getSalario(this.form.value).then(
       (response: any) => {
-        this.pagamento = [{ corretor: this.corretor, salarioTotal: response.total }];
+        this.pagamento = [{ corretor: this.corretor, salarioTotal: response.total || response.comissao }];
         console.log(this.pagamento);
       }, error => {
         console.log(error); 

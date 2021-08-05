@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import Swal from 'sweetalert2';
 import { IVenda } from 'src/app/interfaces/vendas_model';
 import { VendasEndpointService } from 'src/app/service/vendas-endpoint.service';
 import { EditarVendaDialogComponent } from 'src/app/components/editar-venda/editar-venda.component';

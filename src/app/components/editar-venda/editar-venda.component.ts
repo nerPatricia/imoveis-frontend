@@ -76,7 +76,7 @@ export class EditarVendaDialogComponent implements OnInit {
     } else {  
       this.vendasService.addVenda(this.form.value).then(
         (response) => {
-          Swal.fire('Venda atualizada com sucesso', '', 'success').then(() =>
+          Swal.fire('Venda cadastrada com sucesso', '', 'success').then(() =>
               window.location.reload()
           );
         },

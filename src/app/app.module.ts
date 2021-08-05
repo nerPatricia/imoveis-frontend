@@ -7,7 +7,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { UserRegisterComponent } from './pages/user-register/user-register.component';
 import '@angular/common/locales/global/pt';
 import { NgxMaskModule } from 'ngx-mask';
 import localePt from '@angular/common/locales/pt';
@@ -42,7 +41,6 @@ import { RelatoriosComponent } from './pages/relatorios-gerais/relatorios.compon
     ImgDialogComponent,
     EditarImovelDialogComponent,
     NavbarComponent,
-    UserRegisterComponent,
     CorretoresComponent,
     EditarCorretorDialogComponent,
     VendasComponent,

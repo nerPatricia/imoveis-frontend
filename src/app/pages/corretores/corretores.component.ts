@@ -1,10 +1,9 @@
 import { CorretoresEndpointService } from './../../service/corretores-endpoint.service';
-import { Component, OnInit, ViewChild, AfterViewInit, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { IEmployee } from 'src/app/interfaces/corretores_model';
 import { EditarCorretorDialogComponent } from 'src/app/components/editar-corretor/editar-corretor.component';
 import { MatDialog } from '@angular/material/dialog';
-import Swal from 'sweetalert2';
 import { MatPaginator } from '@angular/material/paginator';
 
 @Component({

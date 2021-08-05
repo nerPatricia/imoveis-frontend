@@ -115,7 +115,6 @@ export class ImoveisComponent {
         codigos.push(this.imoveis[index].codigo);
       }
     });
-    console.log(codigos);
 
     Swal.fire({
       icon: 'warning',

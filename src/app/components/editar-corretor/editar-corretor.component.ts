@@ -72,7 +72,9 @@ export class EditarCorretorDialogComponent implements OnInit {
     } else {
     this.corretoresService.addCorretor(this.form.value).then(
       (response) => {
-        console.log(response);
+        Swal.fire('Corretor cadastrado com sucesso', '', 'success').then(() =>
+              window.location.reload()
+          );
       },
       (error) => {
         console.log(error);
