@@ -43,24 +43,6 @@ export class VendasComponent implements OnInit, AfterViewInit{
     });
   }
 
-  deletarVendas(venda) { //ALTERAR PARA VENDAS
-    Swal.fire({
-      icon: 'warning',
-      title: 'Deseja mesmo remover esta venda?',
-      confirmButtonText: 'Remover',
-      showCancelButton: true,
-      confirmButtonColor: '#dc3545',
-      cancelButtonText: 'Cancelar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        // TODO: acessar o endpoint de remover corretor aqui 
-        // tem o objeto do corretor selecionado no parametro pra pegar as informações
-        // se precisar dar um reload na tela depois, usar window.location.reload()
-        Swal.fire('Removido com sucesso', '', 'success');
-      }
-    })
-  }
-
   preencheLista() {
     this.vendasService.getAllVendas().then(
       (response: any) => {
