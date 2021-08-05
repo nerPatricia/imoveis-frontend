@@ -36,7 +36,7 @@
             </mat-form-field>
         </div>
 
-        <!-- :nome corretor -->
+        <!-- :corretor(CRECI) -->
         <div class="col-6">
             <mat-form-field appearance="outline">
                 <mat-label>Creci Corretor</mat-label>
@@ -49,8 +49,8 @@
         <div class="col-6">
             <mat-form-field appearance="outline">
                 <mat-label>Data Venda</mat-label>
-                <input matInput type="text" formControlName="dataVenda" placeholder="dd/mm/yyyy" mask="00/00/0000"
-                    required />
+                <input matInput type="text" formControlName="dataVenda" [dropSpecialCharacters]="false"
+                    placeholder="dd/mm/yyyy" mask="00/00/0000" required />
                 <mat-error>{{ getErrorMessage("dataVenda") }}</mat-error>
             </mat-form-field>
         </div>

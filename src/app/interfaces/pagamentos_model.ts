@@ -1,8 +1,6 @@
 export interface IPagamentoEmployee {
-    creci : string,	
-    nomeCorretor: string,
-    tipoCorretor: string,
-    percentComissao?: number //(float entre 1 e 3)
+    message: string,	
+    comissao: number,
     salario?: number,
-    ganhoTotal: number    
+    total?: number    
 }

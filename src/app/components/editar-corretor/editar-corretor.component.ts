@@ -19,6 +19,14 @@ export class EditarCorretorDialogComponent implements OnInit {
     private fb: FormBuilder,
   ) { 
     console.log(data);
+
+    if (this.data.corretor) {
+      const date = new Date(this.data.corretor.dataAdmissao);
+      const ano = date.getUTCFullYear();
+      const mes = date.getUTCMonth() + 1;
+      const dia = date.getUTCDate();
+      this.data.corretor.dataAdmissao = (dia < 10 ? '0'+dia : dia) + '/' + (mes < 10 ? '0'+mes : mes) + '/' + ano;
+    }
     
     this.form = this.fb.group({
       creci: new FormControl(data.corretor?.creci || '', [Validators.required]),
@@ -64,7 +72,9 @@ export class EditarCorretorDialogComponent implements OnInit {
     } else {
     this.corretoresService.addCorretor(this.form.value).then(
       (response) => {
-        console.log(response);
+        Swal.fire('Corretor cadastrado com sucesso', '', 'success').then(() =>
+              window.location.reload()
+          );
       },
       (error) => {
         console.log(error);
@@ -79,10 +89,11 @@ export class EditarCorretorDialogComponent implements OnInit {
       const dia = this.form.get('dataAdmissao').value.split('/')[0];
       const mes = this.form.get('dataAdmissao').value.split('/')[1];
       const ano = this.form.get('dataAdmissao').value.split('/')[2];
+      console.log(dia);
       this.form
         .get('dataAdmissao')
         .setValue(
-          ano + '-' + ('0' + mes).slice(-2) + '-' + ('0' + dia).slice(-2)
+          new Date(ano +'-' +mes +'-' +dia)
         );
     }
   }

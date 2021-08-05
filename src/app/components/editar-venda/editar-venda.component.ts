@@ -19,7 +19,10 @@ export class EditarVendaDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<EditarVendaDialogComponent>,
     private fb: FormBuilder,
   ) { 
-    console.log(data);
+    if (this.data.venda) {
+      const obj = this.montaData(this.data.venda.dataVenda);
+      this.data.venda.dataVenda = (obj.mes < 10 ? '0'+obj.mes : obj.mes) + '/' + (obj.dia < 10 ? '0'+obj.dia : obj.dia) + '/' + obj.ano;
+    }
 
     this.form = this.fb.group({
       codigoImovel: new FormControl(data.venda?.codigoImovel || '', [Validators.required]),
@@ -28,10 +31,22 @@ export class EditarVendaDialogComponent implements OnInit {
       creciCorretor: new FormControl(data.venda?.creciCorretor || '', [Validators.required]),
       dataVenda: new FormControl(data.venda?.dataVenda || '', [Validators.required])
     });
+
+    const obj = this.montaData(this.form.get('dataVenda').value);
+    this.form.get('dataVenda').setValue('/' + (obj.dia < 10 ? '0'+obj.dia : obj.dia) + '/' + (obj.mes < 10 ? '0'+obj.mes : obj.mes) + '/' + obj.ano);
+
     if (this.data.venda) {
       this.form.get('codigoImovel').disable();
     }
     this.titulo = data.venda  ? "EDITAR VENDA" : "CADASTRAR VENDAS";
+  }
+
+  montaData(dataOriginal) {
+    const date = new Date(dataOriginal);
+    const ano = date.getUTCFullYear();
+    const mes = date.getUTCMonth() + 1;
+    const dia = date.getUTCDate();
+    return {ano, mes, dia};
   }
 
   getErrorMessage(field) {
@@ -42,8 +57,7 @@ export class EditarVendaDialogComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   closeModal(): void {
     this.dialogRef.close({ fechouModal: true });
@@ -52,7 +66,7 @@ export class EditarVendaDialogComponent implements OnInit {
   atualizar() {
     this.formataForm();
 
-    if(this.data.venda){
+    if (this.data.venda) {
       this.vendasService
         .updateVendaById(this.form.value, this.data.venda._id)
         .then(
@@ -68,7 +82,9 @@ export class EditarVendaDialogComponent implements OnInit {
     } else {  
       this.vendasService.addVenda(this.form.value).then(
         (response) => {
-          console.log(response);
+          Swal.fire('Venda cadastrada com sucesso', '', 'success').then(() =>
+              window.location.reload()
+          );
         },
         (error) => {
           console.log(error);
@@ -78,17 +94,14 @@ export class EditarVendaDialogComponent implements OnInit {
   }
 
   formataForm() {
-
     if (this.form.get('dataVenda').value.includes('/')) {
       // se a data incluir uma / quer dizer q nao ta no formato date, entao tem q formatar
       const dia = this.form.get('dataVenda').value.split('/')[0];
       const mes = this.form.get('dataVenda').value.split('/')[1];
       const ano = this.form.get('dataVenda').value.split('/')[2];
-      this.form
-        .get('dataDeCadastro')
-        .setValue(
-          ano + '-' + ('0' + mes).slice(-2) + '-' + ('0' + dia).slice(-2)
-        );
+      this.form.get('dataVenda').setValue(
+        new Date(ano +'-' +mes +'-' +dia)
+      );
     }
   }
 }

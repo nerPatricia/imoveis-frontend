@@ -7,7 +7,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { UserRegisterComponent } from './pages/user-register/user-register.component';
 import '@angular/common/locales/global/pt';
 import { NgxMaskModule } from 'ngx-mask';
 import localePt from '@angular/common/locales/pt';
@@ -31,6 +30,7 @@ import { ImoveisComponent } from './pages/imoveis/imoveis.component';
 import { CorretoresComponent } from './pages/corretores/corretores.component';
 import { VendasComponent } from './pages/vendas/vendas.component';
 import { PagamentosComponent } from './pages/pagamentos/pagamentos.component';
+import { RelatoriosComponent } from './pages/relatorios-gerais/relatorios.component';
 
 @NgModule({
   declarations: [
@@ -41,12 +41,12 @@ import { PagamentosComponent } from './pages/pagamentos/pagamentos.component';
     ImgDialogComponent,
     EditarImovelDialogComponent,
     NavbarComponent,
-    UserRegisterComponent,
     CorretoresComponent,
     EditarCorretorDialogComponent,
     VendasComponent,
     EditarVendaDialogComponent,
-    PagamentosComponent
+    PagamentosComponent,
+    RelatoriosComponent
   ],
   imports: [
     BrowserModule,

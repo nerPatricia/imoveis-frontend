@@ -73,10 +73,11 @@ export class ImoveisComponent {
     });
   }
 
-  imovelModal(imovel?) {
+  imovelModal(modalTitle, imovel?) {
     this.dialog.open(EditarImovelDialogComponent, {
       data: {
         imovel: imovel || null,
+        modalTitle: modalTitle || null
       },
       width: '700px',
       backdropClass: 'modal-menor',
@@ -93,9 +94,6 @@ export class ImoveisComponent {
       cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
-        // se precisar dar um reload na tela depois, usar window.location.reload()
-        console.log(imovel);
-        // TODO: NAO TA FUNCIONANDO
         this.imoveisService
           .removeImoveisById(imovel.codigo)
           .then((response) => {
@@ -117,7 +115,6 @@ export class ImoveisComponent {
         codigos.push(this.imoveis[index].codigo);
       }
     });
-    console.log(codigos);
 
     Swal.fire({
       icon: 'warning',
@@ -129,7 +126,7 @@ export class ImoveisComponent {
     }).then((result) => {
       if (result.isConfirmed) {
         this.imoveisService
-          .removeImoveisSelecionados(codigos)
+          .removeImoveisSelecionados({ codigos })
           .then((response) => {
             Swal.fire('Removidos com sucesso', '', 'success').then(() => {
               window.location.reload();
