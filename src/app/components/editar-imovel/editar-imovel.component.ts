@@ -30,6 +30,15 @@ export class EditarImovelDialogComponent {
     //TODO: adicionar mascara de preço e de data
     //TODO: preço é number e dataDeCadastro é date
     console.log(data);
+
+    if (this.data.imovel) {
+      const date = new Date(this.data.imovel.dataDeCadastro);
+      const ano = date.getUTCFullYear();
+      const mes = date.getUTCMonth() + 1;
+      const dia = date.getUTCDate();
+      this.data.imovel.dataDeCadastro = (dia < 10 ? '0'+dia : dia) + '/' + (mes < 10 ? '0'+mes : mes) + '/' + ano;
+    }
+
     this.form = this.fb.group({
       codigo: new FormControl(data.imovel?.codigo || '', [Validators.required]),
       tipo: new FormControl(data.imovel?.tipo || '', [Validators.required]),
@@ -144,7 +153,7 @@ export class EditarImovelDialogComponent {
       this.form
         .get('dataDeCadastro')
         .setValue(
-          ano + '-' + ('0' + mes).slice(-2) + '-' + ('0' + dia).slice(-2)
+          new Date(ano +'-' +mes +'-' +dia)
         );
     }
   }
